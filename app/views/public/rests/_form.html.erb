@@ -1,0 +1,27 @@
+
+<%= form_with model:rest,local:true do |f| %>
+  <div class="form-group">
+    <%= f.label :image %>
+    <%= f.file_field :image, accept: "image/*" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :"説明" %>
+    <%= f.text_area :describe, class: "form-control book_body" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :"移動手段" %>
+    <%= f.select :move_method, ["徒歩", "バイク", "車", "大型車" ], class: "form-control book_toilet" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :"トイレ" %>
+    <%= f.select :toilet, ["わからない", "有り", "無し"], class: "form-control book_toilet" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :"喫煙不可" %>
+    <%= f.select :smoking_area, ["わからない", "不可", "可"], class: "form-control book_toilet" %>
+  </div>
+  <div class="form-group">
+    <%= f.submit class: "btn btn-success" %>
+  </div>
+
+  <% end %>

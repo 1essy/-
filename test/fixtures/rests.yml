@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  describe: MyText
+  move_method: 1
+  smoking_area: 1
+  toilet: 1
+
+two:
+  describe: MyText
+  move_method: 1
+  smoking_area: 1
+  toilet: 1

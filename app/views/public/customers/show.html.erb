@@ -1,0 +1,14 @@
+<p>ユーザー名：<%= current_customer.name %>さん</p>
+<p><%#= link_to "編集する" edit_customer_path(@customer) %></p>
+
+
+<% @rests.each do |rest| %>
+  <%= link_to rest_path(rest) do %>
+    <% if rest.image.attached? %>
+      <%= image_tag rest.image, size: "200x200" %><br>
+    <% end %>
+  <% end %>
+  <p>移動方法：<%= rest.move_method %><br></p>
+  <p>喫煙不可：<%= rest.smoking_area %><br></p>
+  <p>トイレ有無：<%= rest.toilet %><br></p>
+<% end %>
