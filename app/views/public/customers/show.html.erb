@@ -1,14 +1,28 @@
-<p>ユーザー名：<%= current_customer.name %>さん</p>
-<p><%#= link_to "編集する" edit_customer_path(@customer) %></p>
+<p><%= current_customer.name %>さんのユーザーページ</p>
+<%#= link_to "編集する" edit_customer_path(current_customer) %>
 
 
 <% @rests.each do |rest| %>
   <%= link_to rest_path(rest) do %>
     <% if rest.image.attached? %>
-      <%= image_tag rest.image, size: "200x200" %><br>
+      <%= image_tag rest.image, size: "300x200" %><br>
     <% end %>
   <% end %>
   <p>移動方法：<%= rest.move_method %><br></p>
   <p>喫煙不可：<%= rest.smoking_area %><br></p>
   <p>トイレ有無：<%= rest.toilet %><br></p>
+  <% if rest.favorited_by?(current_customer) %>
+  <p>
+    <%= link_to rest_favorites_path(rest), method: :delete do %>
+      💗<%= rest.favorites.count %> 
+    <% end %>
+  </p>
+  <% else %>
+  <p>
+    <%= link_to rest_favorites_path(rest), method: :post do %>
+      ♡<%= rest.favorites.count %> 
+    <% end %>
+  <% end %>
+  </p>
+  <p><%= link_to "#{rest.rest_comments.count} コメント", rest_path(rest.id) %></p>
 <% end %>

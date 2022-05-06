@@ -12,7 +12,7 @@
           <h4 class="text-white">メニュー</h4>
           <ul class="list-unstyled">
             <li><%= link_to "お気に入り", destroy_customer_session_path, class: "nav-link text-white" %></li>
-            <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "nav-link text-white" %></li>
+            <li><%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "nav-link text-white" %></li>
             <li><%= link_to "退会する", withdraw_confirm_path(current_customer), class: "nav-link text-white" %></li>
           </ul>
         </div>

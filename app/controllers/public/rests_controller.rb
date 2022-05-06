@@ -4,6 +4,7 @@ class Public::RestsController < ApplicationController
 
   def show
     @rest = Rest.find(params[:id])
+    @rest_comment = RestComment.new
   end
 
   def new
@@ -12,7 +13,7 @@ class Public::RestsController < ApplicationController
   def edit
     @rest = Rest.find(params[:id])
   end
-  
+
   def update
     @rest = Rest.find(params[:id])
     if  @rest.update(rest_params)
@@ -20,8 +21,8 @@ class Public::RestsController < ApplicationController
     else
       render "edit"
     end
-  end  
-  
+  end
+
   def create
     @rest = Rest.new(rest_params)
     @rest.customer_id = current_customer.id
@@ -31,13 +32,13 @@ class Public::RestsController < ApplicationController
       render root_path
     end
   end
-  
+
   def destroy
-    @rest = find(params[:id])
-    @rest.destoroy
-    redirect_to customer_path(@customer)
+    @rest = Rest.find(params[:id])
+    @rest.destroy
+    redirect_to customer_path(current_customer)
   end
-  
+
   private
 
   def rest_params

@@ -13,8 +13,12 @@ class Rest < ApplicationRecord
     image.variant(resize_to_limit: [width, height]).processed
   end
 
-  def favorited_by?(user)
-    favorites.exists?(user_id: user.id)
+  enum move_method: { "徒歩": 0, "バイク": 1, "車": 2, "大型車": 3 }
+  enum smoking_area: { "わからない": 0, "可": 1, "不可": 2 }
+  #enum toilet: { "わからない": 0, "有り": 1, "無し": 2 }
+
+  def favorited_by?(customer)
+    favorites.exists?(customer_id: customer.id)
   end
 
 end

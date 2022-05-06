@@ -1,0 +1,16 @@
+ ja:
+    enums:
+      rest:
+        move_method:
+          on_foot: "徒歩"
+          motorcycle: "バイク"
+          car: "車"
+          large_car: "大型車"
+        smoking_area:
+          not_sure: "わからない"
+          possible: "可"
+          impossible: "不可"
+        toilet:
+          not_sure: "わからない"
+          exist: "有る"
+          not_exist: "無し"
