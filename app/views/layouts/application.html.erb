@@ -18,17 +18,11 @@
         <%= render "layouts/customers_header" %>
       <% end %>
     </header>
-
     <main>
+      
     <%= yield %>
     </main>
-
-    <% if request.fullpath.include? "admin"  %>
     <footer class="footer text-white bg-dark">
-    <% else%>
-    <footer class="footer text-white bg-dark">
-    <% end %>
-
       <div class="container text-center mt-3">
         <p>© 2022 ぐ～たライフ</p>
       </div>

@@ -13,9 +13,9 @@ class Rest < ApplicationRecord
     image.variant(resize_to_limit: [width, height]).processed
   end
 
-  enum move_method: { "徒歩": 0, "バイク": 1, "車": 2, "大型車": 3 }
-  enum smoking_area: { "わからない": 0, "可": 1, "不可": 2 }
-  #enum toilet: { "わからない": 0, "有り": 1, "無し": 2 }
+  enum move_method: { on_foot: 0, motorcycle: 1, car: 2, large_car: 3 }
+  enum smoking_area: { smoking_area_not_sure: 0, possible: 1, impossible: 2 }
+  enum toilet: { toilet_not_sure: 0, exist: 1, not_exist: 2 }
 
   def favorited_by?(customer)
     favorites.exists?(customer_id: customer.id)

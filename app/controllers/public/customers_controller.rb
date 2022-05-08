@@ -4,9 +4,8 @@ class Public::CustomersController < ApplicationController
   end
 
   def show
-    #@customer = Customer.find(params[:id])
     @customer = current_customer
-    @rests = @customer.rests
+    @rests = @customer.rests.page(params[:page]).per(12)
   end
 
   def edit
@@ -33,7 +32,7 @@ class Public::CustomersController < ApplicationController
   private
 
   def customer_params
-    params.require(:customer).permit(:name, :email, :password)
+    params.require(:customer).permit(:name, :email, :password, :is_deleted)
   end
 
   def correct_customer

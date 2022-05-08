@@ -1,4 +1,7 @@
-<h2>Sign up</h2>
+<div class="container my-5">
+  <div class="row">
+    <h2>新規登録</h2>
+  </div>
 
 <%= form_with model: @admin, url: admin_registration_path do |f| %>
   <%= render "admins/shared/error_messages", resource: resource %>

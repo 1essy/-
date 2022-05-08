@@ -1,2 +1,29 @@
-<h1>Admin::Rests#show</h1>
-<p>Find me in app/views/admin/rests/show.html.erb</p>
+<h3 class="text-center mt-2">投稿詳細ページ</h3>
+<div class="container mt-5">
+  <div class="card mx-auto" style="width: 30rem;">
+    <%= image_tag @rest.get_image(300,300) %>
+    <div class="card-body">
+      <h5 class="card-title">説明</h5>
+      <p class="card-text"><%= @rest.describe %></p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">移動方法：<%= @rest.move_method_i18n %></li>
+      <li class="list-group-item">喫煙不可：<%= @rest.smoking_area_i18n %></li>
+      <li class="list-group-item">トイレ有無：<%= @rest.toilet_i18n %></li>
+    </ul>
+    <div class="card-body">
+      <div class="mr-5 d-inline">💗<%= @rest.favorites.count %></div>
+      コメント数：<%= @rest.rest_comments.count %>
+      <%= link_to "削除", rest_path(@rest), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-danger ml-5 mr-4" %>
+    </div>
+  </div>
+<div class="mt-3 mx-auto" style="width: 30rem;">
+<% @rest.rest_comments.each do |rest_comment| %>
+  コメント一覧<br><%= rest_comment.created_at.strftime('%Y/%m/%d') %>
+  [<%= rest_comment.customer.name %>]<br>
+  <%= rest_comment.comment %>
+  <% if rest_comment.customer == current_customer %>
+    <%= link_to "削除", admin_rest_rest_comment_path(rest_comment.rest, rest_comment), method: :delete %>
+  <% end %>
+</div>
+<% end %>

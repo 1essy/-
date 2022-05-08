@@ -1,2 +1,23 @@
-<h1>Admin::Customers#show</h1>
-<p>Find me in app/views/admin/customers/show.html.erb</p>
+<p><%= @customer.name %>さんのユーザーページ</p>
+<p><%= link_to "編集する", edit_admin_customer_path(@customer) %></p>
+
+
+<% @rests.each do |rest| %>
+  <%= link_to admin_rest_path(rest) do %>
+    <%= image_tag rest.get_image(300,300) %><br>
+  <% end %>
+  <p>移動方法：<%= rest.move_method_i18n %><br></p>
+  <p>喫煙不可：<%= rest.smoking_area_i18n %><br></p>
+  <p>トイレ有無：<%= rest.toilet_i18n %><br></p>
+  <p> 💗<%= rest.favorites.count %></p>
+  <p><%= rest.rest_comments.count %>コメント</p>
+<% end %>
+
+
+<div class="container">
+   <div class="row">
+   <div class="col-md-4 offset-md-4 py-2 mt-5 mx-auto">
+   <%= paginate @rests %>
+   </div>
+   </div>
+ </div> 

@@ -1,0 +1,21 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+  <div class="navbar-brand text-white">ぐ～たライフ</div>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <% if admin_signed_in? %>
+        <li><%= link_to "投稿一覧", admin_rests_path, class: "nav-link text-white" %></li>
+        <li><%= link_to "ユーザー一覧", admin_customers_path, class: "nav-link text-white" %></li>
+        <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link text-white" %></li>
+      <% else %>
+        <li class="nav-item"><%= link_to "ログイン", new_admin_session_path, class: "nav-link text-white" %></li>
+      <% end %>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>

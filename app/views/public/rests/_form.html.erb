@@ -1,7 +1,7 @@
 
 <%= form_with model:rest,local:true do |f| %>
   <div class="form-group">
-    <%= f.label :image %>
+    <%= f.label :画像 %>
     <%= f.file_field :image, accept: "image/*" %>
   </div>
   <div class="form-group">
@@ -13,8 +13,9 @@
     <%= f.select :move_method, Rest.move_methods_i18n.invert, class: "rest_move_method" %>
   </div>
   <div class="form-group">
+
     <%= f.label :"トイレ" %>
-    <%#= f.select :toilet, Rest.toilets_i18n.invert, class: "rest_toilet" %>
+    <%= f.select :toilet, Rest.toilets_i18n.invert, class: "rest_toilet" %>
   </div>
   <div class="form-group">
     <%= f.label :"喫煙不可" %>
