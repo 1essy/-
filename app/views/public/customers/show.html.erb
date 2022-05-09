@@ -1,30 +1,34 @@
-<p><%= current_customer.name %>さんのユーザーページ</p>
-<p><%= link_to "編集する", edit_customer_path(current_customer) %></p>
-
-
-<% @rests.each do |rest| %>
-  <%= link_to rest_path(rest) do %>
-    <p><%= image_tag rest.get_image(300,300) %><br></p>
-  <% end %>
-  <p>移動方法：<%= rest.move_method_i18n %><br></p>
-  <p>喫煙不可：<%= rest.smoking_area_i18n %><br></p>
-  <p>トイレ有無：<%= rest.toilet_i18n %><br></p>
-  <% if rest.favorited_by?(current_customer) %>
-  <p>
-    <%= link_to rest_favorites_path(rest), method: :delete do %>
-      💗<%= rest.favorites.count %>
-    <% end %>
-  </p>
-  <% else %>
-  <p>
-    <%= link_to rest_favorites_path(rest), method: :post, class: "text-dark mr-5" do %>
-      ♡<%= rest.favorites.count %>
-    <% end %>
-  <% end %>
-  </p>
-  <p><%= link_to "#{rest.rest_comments.count} コメント", rest_path(rest.id) %></p>
+  <h3 class="text-center mt-2"><%= @customer.name %>さんのユーザーページ</h3>
+<% if @customer == current_customer %>
+  <h5 class="text-center"><%= link_to "ユーザー情報を編集する", edit_customer_path(current_customer), class:"btn btn-outline-primary" %></h5>
 <% end %>
-
+<div class="container mt-5 ">
+  <div class="row">
+    <% @rests.each do |rest| %>
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card mt-5 d-flex justify-content-around">
+          <%= link_to rest_path(rest),class:"mx-auto" do %>
+            <%= image_tag rest.get_image(300,300), class: 'img-fluid' %>
+          <% end %>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">移動方法：<%= rest.move_method_i18n %></li>
+            <li class="list-group-item">喫煙不可：<%= rest.smoking_area_i18n %></li>
+            <li class="list-group-item">トイレ有無：<%= rest.toilet_i18n %></li>
+            <li class="list-group-item">
+              <div class="d-inline" id="favorite_buttons_<%= rest.id %>" >
+                <%= render "public/favorites/favorites", rest: rest %>
+              </div>
+                <%= rest.rest_comments.count %>コメント
+            </li>
+            <li class="list-group-item">
+              <%= link_to "詳細", rest_path(rest), class:"btn btn-sm btn-primary ml-4" %>
+            </li>
+          </ul>
+        </div>
+      </div>
+  </div>
+</div>
+    <% end %>
 
 <div class="container">
    <div class="row">
@@ -32,4 +36,4 @@
    <%= paginate @rests %>
    </div>
    </div>
- </div> 
+ </div>

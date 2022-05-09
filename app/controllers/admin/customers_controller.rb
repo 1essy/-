@@ -19,7 +19,7 @@ class Admin::CustomersController < ApplicationController
       redirect_to edit_admin_customer_path(@customer)
     end
   end
-  
+
   private
   def customer_params
     params.require(:customer).permit(:name, :email, :password, :is_deleted)

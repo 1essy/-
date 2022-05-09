@@ -1,4 +1,7 @@
-<% if customer_signed_in? %>
-<%= render "public/rests/form", rest: @rest_new %>
-<% else %>
+<div class="container">
+  <% if customer_signed_in? %>
+    <%= render "public/rests/form", rest: @rest_new %>
+  <% else %>
+    
+</div>
 <% end %>

@@ -1,28 +1,29 @@
+    <div class="row mt-3 flex-column align-items-center pull-left">
+    <%= form_with model:rest,local:true do |f| %>
+      <div class="form-group">
+        <%= f.label :画像, class: "col-sm-6" %>
+        <%= f.file_field :image, accept: "image/*" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :説明, class: "col-sm-5" %>
+        <%= f.text_area :describe, class: "form-control rest_describe" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :移動手段, class: "col-sm-6" %>
+        <%= f.select :move_method, Rest.move_methods_i18n.invert, class: "rest_move_method col-sm-6" %>
+      </div>
+      <div class="form-group">
 
-<%= form_with model:rest,local:true do |f| %>
-  <div class="form-group">
-    <%= f.label :画像 %>
-    <%= f.file_field :image, accept: "image/*" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :"説明" %>
-    <%= f.text_area :describe, class: "form-control rest_describe" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :"移動手段" %>
-    <%= f.select :move_method, Rest.move_methods_i18n.invert, class: "rest_move_method" %>
-  </div>
-  <div class="form-group">
-
-    <%= f.label :"トイレ" %>
-    <%= f.select :toilet, Rest.toilets_i18n.invert, class: "rest_toilet" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :"喫煙不可" %>
-    <%= f.select :smoking_area, Rest.smoking_areas_i18n.invert, class: "rest_move_method" %>
-  </div>
-  <div class="form-group">
-    <%= f.submit class: "btn btn-success" %>
-  </div>
-
+        <%= f.label :トイレ, class: "col-sm-5" %>
+        <%= f.select :toilet, Rest.toilets_i18n.invert, class: "rest_toilet" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :喫煙不可, class: "col-sm-5" %>
+        <%= f.select :smoking_area, Rest.smoking_areas_i18n.invert, class: "rest_move_method" %>
+      </div>
+      <div class="form-group">
+        <%= f.submit "変更を保存する", class: "btn btn-success" %>
+      </div>
+    </div>
+</div>
   <% end %>

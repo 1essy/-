@@ -4,7 +4,7 @@
     </div>
     <div class="row mt-3 flex-column align-items-center">
     <%= form_with model:@customer, url:customer_path, local:true do |f| %>
-      
+
       <div class="form-group row">
         <%= f.label :名前, class: "col-sm-5" %>
         <%= f.text_field :name, class: "form-control col-sm-7" %>
@@ -16,7 +16,7 @@
       <div class="form-group">
         <%= f.submit "変更を保存する", class: "btn btn-primary mt-2 mx-auto" %>
         <%= link_to "戻る", customer_path(current_customer), class: "btn btn-info mt-2 mx-auto" %>
-        <%= link_to "退会する", withdraw_confirm_path, class: "btn btn-danger mt-2 mx-4" %>
+        <%= link_to "退会する", withdrawal_confirm_path, class: "btn btn-danger mt-2 mx-4" %>
       </div>
     <% end %>
-    
+

@@ -6,7 +6,6 @@ class Admin::RestsController < ApplicationController
 
   def show
     @rest = Rest.find(params[:id])
-   
   end
 
   def new

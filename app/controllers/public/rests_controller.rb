@@ -17,7 +17,7 @@ class Public::RestsController < ApplicationController
   def update
     @rest = Rest.find(params[:id])
     if  @rest.update(rest_params)
-      redirect_to rest_path(@rest)
+      redirect_to rest_path(@rest), notice: "投稿を更新しました"
     else
       render "edit"
     end
@@ -27,7 +27,7 @@ class Public::RestsController < ApplicationController
     @rest = Rest.new(rest_params)
     @rest.customer_id = current_customer.id
     if  @rest.save
-      redirect_to customer_path(@rest.id)
+      redirect_to rest_path(@rest), notice: "投稿しました"
     else
       render root_path
     end
@@ -36,7 +36,7 @@ class Public::RestsController < ApplicationController
   def destroy
     @rest = Rest.find(params[:id])
     @rest.destroy
-    redirect_to customer_path(current_customer)
+    redirect_to customer_path(current_customer), alert: "投稿を削除しました"
   end
 
   private

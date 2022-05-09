@@ -35,7 +35,7 @@
           <td><%= rest.move_method_i18n %></td>
           <td><%= rest.smoking_area_i18n %></td>
           <td><%= rest.toilet_i18n %></td>
-          <td><%= link_to "削除", admin_rest_path(rest), method: :delete, data: { confirm: "本当に削除しますか？"} %></td>
+          <td><%= link_to "削除", admin_rest_path(rest), method: :delete, data: { confirm: "本当に削除しますか？"}, class:"btn btn-danger" %></td>
         </tr>
         <% end %>
       </tbody>

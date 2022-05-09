@@ -12,18 +12,30 @@
       <li class="list-group-item">トイレ有無：<%= @rest.toilet_i18n %></li>
     </ul>
     <div class="card-body">
-      <div class="mr-5 d-inline">💗<%= @rest.favorites.count %></div>
+      <div class="ml-3 mr-5 d-inline">💗<%= @rest.favorites.count %></div>
       コメント数：<%= @rest.rest_comments.count %>
       <%= link_to "削除", rest_path(@rest), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-danger ml-5 mr-4" %>
     </div>
   </div>
-<div class="mt-3 mx-auto" style="width: 30rem;">
-<% @rest.rest_comments.each do |rest_comment| %>
-  コメント一覧<br><%= rest_comment.created_at.strftime('%Y/%m/%d') %>
-  [<%= rest_comment.customer.name %>]<br>
-  <%= rest_comment.comment %>
-  <% if rest_comment.customer == current_customer %>
-    <%= link_to "削除", admin_rest_rest_comment_path(rest_comment.rest, rest_comment), method: :delete %>
-  <% end %>
+  <div class="mt-3 mx-auto" style="width: 30rem;">
+    <div>コメント一覧</div>
+  <% @rest.rest_comments.each do |rest_comment| %>
+    <br><%= rest_comment.created_at.strftime('%Y/%m/%d') %>
+    [<%= rest_comment.customer.name %>]<br>
+    <div  id="star-rate<%= rest_comment.id%>"></div>    
+    <script>
+      $('#star-rate<%= rest_comment.id%>').raty({
+        size      : 36,
+        starOff   : '<%= asset_path('star-off.png') %>',
+        starOn    : '<%= asset_path('star-on.png') %>',
+        half      : false,
+        readOnly: true,
+        score: <%= rest_comment.star %>,
+      });
+    </script>
+    <%= rest_comment.comment %><br>
+    <%= link_to "削除", admin_rest_rest_comment_path(rest_comment.rest, rest_comment), method: :delete, class:"btn btn-danger btn-sm mb-2 mt-2" %>
+    <% end %>
+  </div>
 </div>
-<% end %>
+
