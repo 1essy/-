@@ -1,11 +1,9 @@
-  <h3 class="text-center mt-2"><%= @customer.name %>さんのユーザーページ</h3>
-  <h5 class="text-center"><%= link_to "ユーザー情報を編集する",  edit_admin_customer_path(@customer), class:"btn btn-outline-primary" %></h5>
 <div class="container mt-5 ">
   <div class="row">
-    <% @rests.each do |rest| %>
+    <% rests.each do |rest| %>
       <div class="col-12 col-md-6 col-lg-4">
         <div class="card mt-5 d-flex justify-content-around">
-          <%= link_to admin_rest_path(rest),class:"mx-auto" do %>
+          <%= link_to rest_path(rest),class:"mx-auto" do %>
             <%= image_tag rest.get_image(300,300), class: 'img-fluid' %>
           <% end %>
           <ul class="list-group list-group-flush">
@@ -13,10 +11,13 @@
             <li class="list-group-item">喫煙不可：<%= rest.smoking_area_i18n %></li>
             <li class="list-group-item">トイレ有無：<%= rest.toilet_i18n %></li>
             <li class="list-group-item">
-              <div class="d-inline mr-3" id="favorite_buttons_<%= rest.id %>" >
-                💗<%= rest.favorites.count %>
+              <div class="d-inline" id="favorite_buttons_<%= rest.id %>" >
+                <%= render "public/favorites/favorites", rest: rest %>
               </div>
                 <%= rest.rest_comments.count %>コメント
+            </li>
+            <li class="list-group-item">
+              <%= link_to "詳細", rest_path(rest), class:"btn btn-sm btn-primary ml-4" %>
             </li>
           </ul>
         </div>
@@ -25,11 +26,10 @@
   </div>
 </div>
 
-
 <div class="container">
    <div class="row">
      <div class="col-md-4 offset-md-4 py-2 mt-5">
-       <%= paginate @rests %>
+       <%= paginate rests %>
      </div>
    </div>
  </div>

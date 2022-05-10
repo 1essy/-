@@ -1,5 +1,6 @@
 class Public::CustomersController < ApplicationController
   before_action :ensure_guest_customer, only: [:edit]
+  
 
   def withdrawal#退会機能
     #binding.pry
@@ -11,13 +12,14 @@ class Public::CustomersController < ApplicationController
   end
 
   def guest_sign_in
+    
     customer = Customer.guest
     sign_in customer
     redirect_to root_path, notice: 'ゲストでログインしました。'
   end
 
   def index
-    @customers = Customer.all
+    redirect_to new_customer_registration_path
   end
 
   def show

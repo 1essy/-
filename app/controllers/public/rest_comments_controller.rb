@@ -1,10 +1,18 @@
 class Public::RestCommentsController < ApplicationController
   def create
     @rest = Rest.find(params[:rest_id])
-    @comment = current_customer.rest_comments.new(rest_comment_params)
-    @comment.rest_id = @rest.id
-    @comment.save
-    redirect_to rest_path(@rest), notice: 'コメントを投稿しました'
+    @rest_comment = current_customer.rest_comments.new(rest_comment_params)
+    @rest_comment.rest_id = @rest.id
+    if  @rest_comment.save
+      redirect_to rest_path(@rest), notice: 'コメントを投稿しました'
+    else
+        render template: "public/rests/show"
+    end
+  end
+  
+  def index
+    @rest = Rest.find(params[:rest_id])
+    redirect_to rest_path(@rest)
   end
 
   def destroy

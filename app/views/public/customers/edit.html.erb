@@ -15,7 +15,9 @@
       </div>
       <div class="form-group">
         <%= f.submit "変更を保存する", class: "btn btn-primary mt-2 mx-auto" %>
-        <%= link_to "戻る", customer_path(current_customer), class: "btn btn-info mt-2 mx-auto" %>
+        <%= link_to :back, class: "btn btn-info mt-2 mx-auto" do %>
+          <div>戻る</div>
+        <% end %>
         <%= link_to "退会する", withdrawal_confirm_path, class: "btn btn-danger mt-2 mx-4" %>
       </div>
     <% end %>

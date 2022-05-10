@@ -1,5 +1,6 @@
 class Public::RestsController < ApplicationController
   def index
+    redirect_to root_path
   end
 
   def show
@@ -24,12 +25,12 @@ class Public::RestsController < ApplicationController
   end
 
   def create
-    @rest = Rest.new(rest_params)
-    @rest.customer_id = current_customer.id
-    if  @rest.save
-      redirect_to rest_path(@rest), notice: "投稿しました"
+    @rest_new = Rest.new(rest_params)
+    @rest_new.customer_id = current_customer.id
+    if  @rest_new.save
+      redirect_to rest_path(@rest_new), notice: "投稿しました"
     else
-      render root_path
+      render template: "public/homes/top"
     end
   end
 
@@ -42,7 +43,7 @@ class Public::RestsController < ApplicationController
   private
 
   def rest_params
-    params.require(:rest).permit(:describe, :move_method, :smoking_area, :toilet, :image)
+    params.permit(:describe, :move_method, :smoking_area, :toilet, :image)
   end
   def ensure_correct_user
       @rest = Rest.find(params[:id])

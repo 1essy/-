@@ -1,5 +1,13 @@
 <h3 class="text-center mt-2">投稿詳細ページ</h3>
 <div class="container mt-5">
+  <% if @rest_comment.errors.any? %>
+  <%= @rest_comment.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @rest_comment.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
   <div class="card mx-auto" style="width: 30rem;">
     <%= image_tag @rest.get_image(300,300) %>
       <div class="card-body">
@@ -7,12 +15,13 @@
         <p class="card-text"><%= @rest.describe %></p>
       </div>
       <ul class="list-group list-group-flush">
+        <li class="list-group-item">投稿者：<%= link_to @rest.customer.name, customer_path(@rest.customer) %></li>
         <li class="list-group-item">移動方法：<%= @rest.move_method_i18n %></li>
         <li class="list-group-item">喫煙不可：<%= @rest.smoking_area_i18n %></li>
         <li class="list-group-item">トイレ有無：<%= @rest.toilet_i18n %></li>
       </ul>
       <div class="card-body">
-      <div id="favorite_buttons_<%= @rest.id %>" class="d-inline" >
+        <div id="favorite_buttons_<%= @rest.id %>" class="d-inline" >
           <%= render "public/favorites/favorites", rest: @rest %>
         </div>
         コメント数：<%= @rest.rest_comments.count %>
@@ -20,30 +29,53 @@
             <%= link_to "編集する", edit_rest_path(@rest), class:"btn btn-primary ml-4" %>
             <%= link_to "削除", rest_path(@rest), method: :delete, data: { confirm: '本当に消しますか？' }, class:"btn btn-danger" %>
           <% end %>
-            <%= link_to "戻る", customer_path(current_customer), class:"btn btn-info" %>
+            <%= link_to :back, class:"btn btn-info" do %>
+              <div>戻る</div>
+            <% end %>
       </div>
   </div>
-  <div class="mt-3 mx-auto" style="width: 30rem;">
-    <%= render 'public/rest_comments/form', rest: @rest, rest_comment: @rest_comment %>
-    <div>コメント一覧</div>
-    <% @rest.rest_comments.each do |rest_comment| %>
-      <br><%= rest_comment.created_at.strftime('%Y/%m/%d') %>
-      [<%= rest_comment.customer.name %>]<br>
-      <div  id="star-rate<%= rest_comment.id%>"></div>
-      <script>
-        $('#star-rate<%= rest_comment.id%>').raty({
-          size      : 36,
-          starOff   : '<%= asset_path('star-off.png') %>',
-          starOn    : '<%= asset_path('star-on.png') %>',
-          half      : false,
-          readOnly: true,
-          score: <%= rest_comment.star %>,
-        });
-      </script>
-      <%= rest_comment.comment %><br>
-      <% if rest_comment.customer == current_customer %>
-        <%= link_to "削除", rest_rest_comment_path(rest_comment.rest, rest_comment), method: :delete, class:"btn btn-danger btn-sm mb-2 mt-2" %>
+    <div class="mt-3 mx-auto" style="width: 30rem;">
+      <%= form_with model: [@rest, @rest_comment] do |f| %>
+      <%= f.text_area :comment, rows: '4', placeholder: "コメントをここに", class:"form-control" %>
+      <%= f.submit "送信する", class:"btn btn-success mt-2" %>
+      <div class="relative-comment-rate d-inline">
+          <%= f.label :star,  "評価 ",id: "e" %>
+        <div id="star-rate" class="d-inline">
+          <%= f.hidden_field :star, id: :rate_star %>
+        </div>
+          <script>
+            $('#star-rate').empty();
+            $('#star-rate').raty({
+              size: 36,
+              starOff: "<%= asset_path('star-off.png') %>",
+              starOn: "<%= asset_path('star-on.png') %>",
+              scoreName: 'rest_comment[star]',
+              half: false,
+            });
+          </script>
+          <%= @rest_comment.star %>
+      </div>
       <% end %>
-    <% end %>
+
+      <div>コメント一覧</div>
+      <% @rest.rest_comments.each do |rest_comment| %>
+        <br><%= rest_comment.created_at.strftime('%Y/%m/%d') %>
+        [<%= rest_comment.customer.name %>]<br>
+        <div  id="star-rate<%= rest_comment.id%>"></div>
+        <script>
+          $('#star-rate<%= rest_comment.id%>').raty({
+            size      : 36,
+            starOff   : '<%= asset_path('star-off.png') %>',
+            starOn    : '<%= asset_path('star-on.png') %>',
+            half      : false,
+            readOnly: true,
+            score: <%= rest_comment.star %>,
+          });
+        </script>
+        <%= rest_comment.comment %><br>
+        <% if rest_comment.customer == current_customer %>
+          <%= link_to "削除", rest_rest_comment_path(rest_comment.rest, rest_comment), method: :delete, class:"btn btn-danger btn-sm mb-2 mt-2" %>
+        <% end %>
+      <% end %>
   </div>
 </div>

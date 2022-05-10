@@ -7,6 +7,7 @@ class Customer < ApplicationRecord
   has_many :rests, dependent: :destroy
   has_many :rest_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :favorites_rests, through: :favorites, source: :rest
 
   def favorited_by?(customer)
     favorites.exists?(customer_id: customer.id)

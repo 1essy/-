@@ -1,7 +1,15 @@
 <div class="container">
+<% if @rest_new.errors.any? %>
+  <%= @rest_new.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @rest_new.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
   <% if customer_signed_in? %>
     <%= render "public/rests/form", rest: @rest_new %>
   <% else %>
-    
+
 </div>
 <% end %>

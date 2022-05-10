@@ -14,4 +14,10 @@
         toilet_not_sure: "わからない"
         exist: "有る"
         not_exist: "無し"
-        
+   activerecord:
+    attributes:
+      customer: 
+        name: "名前"
+        email: "メールアドレス"
+        password: "パスワード"
+

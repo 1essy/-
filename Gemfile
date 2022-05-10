@@ -60,3 +60,4 @@ gem 'kaminari','~> 1.2.1'
 gem "enum_help"
 gem 'jquery-rails'
 gem 'chart-js-rails', '~> 0.1.4'
+gem 'rails-i18n'

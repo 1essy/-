@@ -17,7 +17,7 @@ class Admin::RestsController < ApplicationController
   def destroy
     @rest = Rest.find(params[:id])
     @rest.destroy
-    redirect_to admin_rests_path(current_customer)
+    redirect_to admin_rests_path(current_customer), alert:"投稿を削除しました"
   end
   
   private
