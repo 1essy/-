@@ -1,6 +1,5 @@
 <h3 class="text-center mt-2">投稿詳細ページ</h3>
-<div class="container mt-5">
-  <% if @rest_comment.errors.any? %>
+ <% if @rest_comment.errors.any? %>
   <%= @rest_comment.errors.count %>件のエラーが発生しました
   <ul>
     <% @rest_comment.errors.full_messages.each do |message| %>
@@ -8,6 +7,8 @@
     <% end %>
   </ul>
 <% end %>
+<div class="container mt-3">
+ 
   <div class="card mx-auto" style="width: 30rem;">
     <%= image_tag @rest.get_image(300,300) %>
       <div class="card-body">

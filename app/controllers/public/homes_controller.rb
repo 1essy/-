@@ -4,7 +4,7 @@ class Public::HomesController < ApplicationController
     @rest_new = Rest.new
 
   end
-
+  
   def about
   end
 end

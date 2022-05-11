@@ -11,24 +11,42 @@
         <div class="col-sm-4 offset-md-1 py-4">
           <h4 class="text-white">メニュー</h4>
           <ul class="list-unstyled">
-            <li><%= link_to "お気に入り", rests_favorites_path, class: "nav-link text-white" %></li>
+            <li><%= link_to root_path, class: "nav-link text-white" do %>
+              <i class="fas fa-eject"></i>HOME
+            <% end %>
+            </li>
+            <li><%= link_to rests_favorites_path, class: "nav-link text-white" do %>
+              <i class="fas fa-heart"></i>お気に入り一覧
+            <% end %>
+            </li>
             <li><%= link_to destroy_customer_session_path, method: :delete, class: "nav-link text-white" do %>
               <i class="fas fa-door-closed"></i>ログアウト
             <% end %>
             </li>
-            <li><%= link_to "退会する", withdrawal_confirm_path(current_customer), class: "nav-link text-white" %></li>
+            <li><%= link_to withdrawal_confirm_path(current_customer), class: "nav-link text-white" do %>
+              <i class="fas fa-user-slash"></i>退会する
+            <% end %>
+            </li>
           </ul>
         </div>
         <% else %>
         <div class="col-sm-4 offset-md-1 py-4">
           <h4 class="text-white">メニュー</h4>
           <ul class="list-unstyled">
-            <li><%= link_to "ゲストログイン", customers_guest_sign_in_path, method: :post, class: "nav-link text-white" %></li>
-            
-            <li><%= link_to "新規登録", new_customer_registration_path, class: "nav-link text-white" %></li>
-            <li><%= link_to new_customer_session_path, class: "nav-link text-white" do %>
-              <i class="fas fa-door-open"></i>ログイン
-            <% end %>
+            <li>
+              <%= link_to customers_guest_sign_in_path, method: :post, class: "nav-link text-white" do %>
+                <i class="fas fa-user-alt"></i>ゲストログイン
+              <% end %>
+            </li>
+            <li>
+              <%= link_to new_customer_registration_path, class: "nav-link text-white" do %>
+                <i class="fas fa-user-plus"></i>新規登録
+              <% end %>
+            </li>
+            <li>
+              <%= link_to new_customer_session_path, class: "nav-link text-white" do %>
+                <i class="fas fa-door-open"></i>ログイン
+              <% end %>
             </li>
           </ul>
         </div>

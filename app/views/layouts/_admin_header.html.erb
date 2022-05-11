@@ -6,11 +6,32 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if admin_signed_in? %>
-        <li><%= link_to "投稿一覧", admin_rests_path, class: "nav-link text-white" %></li>
-        <li><%= link_to "ユーザー一覧", admin_customers_path, class: "nav-link text-white" %></li>
-        <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link text-white" %></li>
+        
+        
+        <li>
+          <%= link_to admin_rests_path, class: "nav-link text-white" do %>
+            <i class="fas fa-address-book"></i>投稿一覧
+          <% end %>
+        </li>
+       
+        
+         <li>
+          <%= link_to admin_customers_path, class: "nav-link text-white" do %>
+            <i class="fas fa-users"></i>ユーザー一覧
+          <% end %>
+        </li>
+        
+        <li>
+          <%= link_to destroy_admin_session_path, method: :delete, class: "nav-link text-white" do %>
+            <i class="fas fa-door-closed"></i>ログアウト
+          <% end %>
+        </li>
       <% else %>
-        <li class="nav-item"><%= link_to "ログイン", new_admin_session_path, class: "nav-link text-white" %></li>
+        <li>
+          <%= link_to new_admin_session_path, class: "nav-link text-white" do %>
+            <i class="fas fa-door-open"></i>ログイン
+          <% end %>
+        </li>
       <% end %>
     </ul>
     <form class="form-inline my-2 my-lg-0">
