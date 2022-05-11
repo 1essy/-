@@ -4,10 +4,11 @@ class Rest < ApplicationRecord
   has_many :rest_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_one_attached :image
-  
+
   #バリデーション
   validates :describe, presence: true,length:{maximum:100}
-  
+
+
 
   #画像のサイズ変更
   def get_image(width, height)
@@ -21,7 +22,7 @@ class Rest < ApplicationRecord
   enum move_method: { on_foot: 0, motorcycle: 1, car: 2, large_car: 3 }
   enum smoking_area: { smoking_area_not_sure: 0, possible: 1, impossible: 2 }
   enum toilet: { toilet_not_sure: 0, exist: 1, not_exist: 2 }
-  
+
   #いいねしているかの確認
   def favorited_by?(customer)
     favorites.exists?(customer_id: customer.id)

@@ -1,4 +1,6 @@
 class Admin::RestsController < ApplicationController
+  before_action :authenticate_admin!
+  
   def index
     @rests = Rest.page(params[:page]).per(10)
     

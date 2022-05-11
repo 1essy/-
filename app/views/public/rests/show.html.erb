@@ -56,7 +56,6 @@
           <%= @rest_comment.star %>
       </div>
       <% end %>
-
       <div>コメント一覧</div>
       <% @rest.rest_comments.each do |rest_comment| %>
         <br><%= rest_comment.created_at.strftime('%Y/%m/%d') %>

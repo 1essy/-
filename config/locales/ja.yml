@@ -20,4 +20,9 @@
         name: "名前"
         email: "メールアドレス"
         password: "パスワード"
+      rest:
+        :describe: "説明"
+      rest_comment:
+        star: "星"
+        comment: "コメント"
 

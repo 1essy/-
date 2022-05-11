@@ -1,18 +1,17 @@
 class Public::CustomersController < ApplicationController
   before_action :ensure_guest_customer, only: [:edit]
+  before_action :authenticate_customer!, except: [:guest_sign_in]
+  before_action :correct_customer, only: [:edit, :update]
   
 
   def withdrawal#退会機能
-    #binding.pry
     @customer = Customer.find(params[:id])
     @customer.update(is_deleted: false)
     reset_session
-    flash[:alert] = "退会処理を実行いたしました"
-    redirect_to root_path
+    redirect_to root_path, alert: "退会処理を実行いたしました"
   end
 
   def guest_sign_in
-    
     customer = Customer.guest
     sign_in customer
     redirect_to root_path, notice: 'ゲストでログインしました。'
@@ -32,12 +31,8 @@ class Public::CustomersController < ApplicationController
   end
 
   def update
-    @customer = current_customer
-    if  @customer.update(customer_params)
-      redirect_to customer_path(@customer), notice: "ユーザー情報を更新しました"
-    else
-      render "edit"
-    end
+    @customer.update(customer_params)
+    redirect_to customer_path(@customer), notice: "ユーザー情報を更新しました"
   end
 
   private

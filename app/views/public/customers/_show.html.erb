@@ -4,7 +4,7 @@
       <div class="col-12 col-md-6 col-lg-4">
         <div class="card mt-5 d-flex justify-content-around">
           <%= link_to rest_path(rest),class:"mx-auto" do %>
-            <%= image_tag rest.get_image(300,300), class: 'img-fluid' %>
+            <%= image_tag rest.image, style: "obfect-fit: contain; height: 250px;  width: 250px;", class: 'img-fluid' %>
           <% end %>
           <ul class="list-group list-group-flush">
             <li class="list-group-item">移動方法：<%= rest.move_method_i18n %></li>

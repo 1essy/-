@@ -1,4 +1,7 @@
 class Public::RestsController < ApplicationController
+  before_action :authenticate_customer!
+  before_action :correct_rest, only: [:edit, :update]
+
   def index
     redirect_to root_path
   end
@@ -12,16 +15,11 @@ class Public::RestsController < ApplicationController
   end
 
   def edit
-    @rest = Rest.find(params[:id])
   end
 
   def update
-    @rest = Rest.find(params[:id])
-    if  @rest.update(rest_params)
-      redirect_to rest_path(@rest), notice: "投稿を更新しました"
-    else
-      render "edit"
-    end
+    @rest.update(rest_params)
+    redirect_to rest_path(@rest), notice: "投稿を更新しました"
   end
 
   def create
@@ -43,12 +41,19 @@ class Public::RestsController < ApplicationController
   private
 
   def rest_params
-    params.permit(:describe, :move_method, :smoking_area, :toilet, :image)
+    params.require(:rest).permit(:describe, :move_method, :smoking_area, :toilet, :image)
   end
   def ensure_correct_user
       @rest = Rest.find(params[:id])
       unless @rest.user == current_customer
         redirect_to root_path
       end
+  end
+
+  def correct_rest
+    @rest = Rest.find(params[:id])
+    if current_customer != @rest.customer
+      redirect_to customer_path(current_customer)
+    end
   end
 end
