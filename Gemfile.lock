@@ -93,6 +93,7 @@ GEM
       activesupport (>= 3.0.0)
     erubi (1.10.0)
     ffi (1.15.5)
+    geocoder (1.7.5)
     globalid (1.0.0)
       activesupport (>= 5.0)
     i18n (1.10.0)
@@ -260,6 +261,7 @@ DEPENDENCIES
   chart-js-rails (~> 0.1.4)
   devise
   enum_help
+  geocoder
   image_processing (~> 1.2)
   jbuilder (~> 2.7)
   jquery-rails

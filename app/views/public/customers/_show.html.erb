@@ -12,7 +12,9 @@
             <li class="list-group-item">トイレ有無：<%= rest.toilet_i18n %></li>
             <li class="list-group-item">
               <div class="d-inline" id="favorite_buttons_<%= rest.id %>" >
+              <% if customer_signed_in? %>
                 <%= render "public/favorites/favorites", rest: rest %>
+              <% end %>
               </div>
                 <%= rest.rest_comments.count %>コメント
             </li>

@@ -1,6 +1,7 @@
 class Public::RestsController < ApplicationController
   before_action :authenticate_customer!
   before_action :correct_rest, only: [:edit, :update]
+ 
 
   def index
     redirect_to root_path
@@ -41,7 +42,7 @@ class Public::RestsController < ApplicationController
   private
 
   def rest_params
-    params.require(:rest).permit(:describe, :move_method, :smoking_area, :toilet, :image)
+    params.require(:rest).permit(:describe, :move_method, :smoking_area, :toilet, :image, :address).merge(customer_id: current_customer.id)
   end
   def ensure_correct_user
       @rest = Rest.find(params[:id])
@@ -56,4 +57,6 @@ class Public::RestsController < ApplicationController
       redirect_to customer_path(current_customer)
     end
   end
+  
+  
 end

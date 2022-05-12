@@ -16,12 +16,13 @@
         not_exist: "無し"
    activerecord:
     attributes:
-      customer: 
+      customer:
         name: "名前"
         email: "メールアドレス"
         password: "パスワード"
       rest:
-        :describe: "説明"
+        describe: "説明"
+        address: "住所"
       rest_comment:
         star: "星"
         comment: "コメント"

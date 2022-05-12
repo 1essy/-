@@ -9,8 +9,9 @@
       <thead>
         <tr>
           <th>会員ID</th>
-          <th>氏名</th>
+          <th>投稿者名</th>
           <th>画像</th>
+          <th>住所</th>
           <th>移動方法</th>
           <th>喫煙不可</th>
           <th>トイレ有無</th>
@@ -32,6 +33,7 @@
                 <%= image_tag rest.get_image(100,100) %><br>
             <% end %>
           </td>
+          <td><%= rest.address %></td>
           <td><%= rest.move_method_i18n %></td>
           <td><%= rest.smoking_area_i18n %></td>
           <td><%= rest.toilet_i18n %></td>

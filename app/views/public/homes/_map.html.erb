@@ -1,0 +1,51 @@
+<div class="map-wrap">
+  <div id='map' class="map"></div>
+  <style>
+  #map {
+    height: 500px;
+    width: 500px;
+  }
+  </style>
+  <script>
+  let map
+  const display = document.getElementById('display')
+
+  function initMap(){
+    geocoder = new google.maps.Geocoder()
+
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: <%= @rest.latitude %>, lng: <%= @rest.longitude %>},
+      zoom: 15,
+      zoomControl: false,
+      mapTypeControl: false,
+      fullscreenControl: false,
+      streetViewControl: false,
+    });
+
+    marker = new google.maps.Marker({
+      position: {lat: <%= @rest.latitude %>, lng: <%= @rest.longitude %>},
+      map: map
+    });
+  }
+
+  let geocoder
+
+  function codeAddress(){
+    let inputAddress = document.getElementById('address').value;
+
+    geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+      if (status == 'OK') {
+        map.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location
+        });
+        display.textContent = "検索結果：" + results[ 0 ].geometry.location
+      } else {
+        alert('該当する結果がありませんでした：' + status);
+      }
+    });
+  }
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWCa5GDZBE09G610gyGsIi4akQup_x7qQ&callback=initMap" async defer></script>
+</div>

@@ -7,7 +7,11 @@ class Rest < ApplicationRecord
 
   #バリデーション
   validates :describe, presence: true,length:{maximum:100}
-
+  validates :address, presence: true
+  
+  #座標変換
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
 
 
   #画像のサイズ変更

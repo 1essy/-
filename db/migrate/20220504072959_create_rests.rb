@@ -6,6 +6,9 @@ class CreateRests < ActiveRecord::Migration[6.1]
       t.integer :smoking_area
       t.integer :toilet
       t.integer :customer_id
+      t.string :address
+      t.float :latitude
+      t.float :longitude
 
       t.timestamps
     end

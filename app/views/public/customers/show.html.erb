@@ -1,5 +1,5 @@
-  <h3 class="text-center mt-2"><%= @customer.name %>さんのユーザーページ</h3>
+  <h3 class="text-center mt-2"><%= @customer.name %>さんの投稿一覧</h3>
 <% if @customer == current_customer && @customer.name != "ゲスト" %>
-  <h5 class="text-center"><%= link_to "ユーザー情報を編集する", edit_customer_path(current_customer), class:"btn btn-outline-primary" %></h5>
+  <h5 class="text-center"><%= link_to "ユーザー情報を編集する", edit_customer_path(current_customer), class:"btn btn-primary" %></h5>
 <% end %>
 <%= render "public/customers/show", rests: @rests %>

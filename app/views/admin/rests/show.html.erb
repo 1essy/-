@@ -1,5 +1,6 @@
+
 <h3 class="text-center mt-2">投稿詳細ページ</h3>
-<div class="container mt-5">
+<div class="container mt-3">
   <div class="card mx-auto" style="width: 30rem;">
     <%= image_tag @rest.get_image(300,300) %>
     <div class="card-body">
@@ -8,6 +9,7 @@
     </div>
     <ul class="list-group list-group-flush">
       <li class="list-group-item">投稿者：<%= link_to @rest.customer.name, admin_customer_path(@rest.customer) %></li>
+      <li class="list-group-item">住所：<%= @rest.address %></li>
       <li class="list-group-item">移動方法：<%= @rest.move_method_i18n %></li>
       <li class="list-group-item">喫煙不可：<%= @rest.smoking_area_i18n %></li>
       <li class="list-group-item">トイレ有無：<%= @rest.toilet_i18n %></li>
@@ -42,4 +44,5 @@
   <% end %>
   </div>
 </div>
+<%= render "public/homes/map" %>
 
