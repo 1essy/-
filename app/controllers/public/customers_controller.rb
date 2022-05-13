@@ -3,7 +3,7 @@ class Public::CustomersController < ApplicationController
   before_action :authenticate_customer!, except: [:guest_sign_in]
   before_action :correct_customer, only: [:edit, :update]
   
-
+  #退会機能
   def withdrawal#退会機能
     @customer = Customer.find(params[:id])
     @customer.update(is_deleted: false)

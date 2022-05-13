@@ -1,4 +1,4 @@
-  <h3 class="text-center mt-2"><%= @customer.name %>さんの投稿一覧</h3>
+<h3 class="text-center mt-2"><%= @customer.name %>さんの投稿一覧</h3>
   <h5 class="text-center"><%= link_to "ユーザー情報を編集する",  edit_admin_customer_path(@customer), class:"btn btn-primary" %></h5>
 <div class="container mt-5 ">
   <div class="row">
@@ -13,10 +13,10 @@
             <li class="list-group-item">喫煙不可：<%= rest.smoking_area_i18n %></li>
             <li class="list-group-item">トイレ有無：<%= rest.toilet_i18n %></li>
             <li class="list-group-item">
-              <div class="d-inline mr-3" id="favorite_buttons_<%= rest.id %>" >
-                💗<%= rest.favorites.count %>
-              </div>
-                <%= rest.rest_comments.count %>コメント
+            <div class="d-inline mr-3" id="favorite_buttons_<%= rest.id %>" >
+              💗<%= rest.favorites.count %>
+            </div>
+              <%= rest.rest_comments.count %>コメント
             </li>
           </ul>
         </div>
@@ -24,8 +24,6 @@
     <% end %>
   </div>
 </div>
-
-
 <div class="container">
    <div class="row">
      <div class="col-md-4 offset-md-4 py-2 mt-5">

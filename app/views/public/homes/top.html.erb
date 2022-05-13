@@ -3,15 +3,12 @@
   <div class="row">
     <div class="col-lg-8 col-md-6 col-12">
       <div class="map-wrap">
-      <h2 class="text-center">休憩地図</h2>
+      <h2 class="text-center mt-5">休憩地図</h2>
       <input id="address" type="textbox" value="" class="">
       <input type="button" value="検索" onclick="codeAddress()" class="btn btn-secondary">
       <div id='map' class="map mt-3"></div>
       <style>
-      #map {
-        height: 500px;
-        width: 500px;
-      }
+      
       </style>
       <script>
       let map
@@ -54,16 +51,16 @@
     </div>
     </div>
     <div class="col-lg-3 mt-4">
-      
-      <% if @rest_new.errors.any? %>
-        <%= @rest_new.errors.count %>件のエラーが発生しました
+
+      <% if @rest.errors.any? %>
+        <%= @rest.errors.count %>件のエラーが発生しました
         <ul>
-          <% @rest_new.errors.full_messages.each do |message| %>
+          <% @rest.errors.full_messages.each do |message| %>
             <li><%= message %></li>
           <% end %>
         </ul>
       <% end %>
-      <%= render "public/rests/form", rest: @rest_new %>
+      <%= render "public/rests/form", rest: @rest %>
     </div>
   </div>
 </div>

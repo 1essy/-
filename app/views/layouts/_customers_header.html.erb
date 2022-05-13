@@ -43,13 +43,13 @@
               <% end %>
             </li>
             <li>
-              <%= link_to new_customer_registration_path, class: "nav-link text-white" do %>
-                <i class="fas fa-user-plus"></i>新規登録
-              <% end %>
-            </li>
-            <li>
               <%= link_to new_customer_session_path, class: "nav-link text-white" do %>
                 <i class="fas fa-door-open"></i>ログイン
+              <% end %>
+            </li>
+             <li>
+              <%= link_to new_customer_registration_path, class: "nav-link text-white" do %>
+                <i class="fas fa-user-plus"></i>新規登録
               <% end %>
             </li>
           </ul>
@@ -60,9 +60,15 @@
   </div>
   <div class="navbar navbar-dark bg-dark shadow-sm">
     <div class="container d-flex justify-content-between">
-      <strong><%= link_to "ぐ～たライフ", root_path, class: "nav-link text-white" %></strong>
+      <strong><%= link_to "ぐ～たライフ", root_path, class:"nav-link text-white" %></strong>
     </div>
-     <% if customer_signed_in? %>
+    <div class="form-group my-2 my-lg-0">
+      <%= search_form_for @search, url: search_path do |f| %>
+      <%= f.search_field :address_cont, class:"form-control mr-sm-2", placeholder:"住所を入れてください" %>
+    </div>
+    <div class="actions"><%= f.submit "search", class:"btn btn-outline-success ml-1" %></div>
+      <% end %>
+   <% if customer_signed_in? %>
     <div class="navbar navbar-dark bg-dark shadow-sm">
       <div class="container d-flex justify-content-between">
         <%= link_to customer_path(current_customer), class: "nav-link text-white" do %>

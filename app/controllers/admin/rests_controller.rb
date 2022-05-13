@@ -1,5 +1,11 @@
 class Admin::RestsController < ApplicationController
   before_action :authenticate_admin!
+  before_action :set_q, only: [:search]
+  
+  def search
+    @search = Rest.ransack(params[:q])
+    @rests = @search.result.page(params[:page]).per(10)
+  end
   
   def index
     @rests = Rest.page(params[:page]).per(10)
@@ -23,6 +29,10 @@ class Admin::RestsController < ApplicationController
   end
   
   private
+  
+  def set_q
+    @search = Rest.ransack(params[:q])
+  end
 
   def rest_params
     params.require(:rest).permit(:describe, :move_method, :smoking_area, :toilet, :image)

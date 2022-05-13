@@ -6,21 +6,16 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if admin_signed_in? %>
-        
-        
         <li>
           <%= link_to admin_rests_path, class: "nav-link text-white" do %>
             <i class="fas fa-address-book"></i>投稿一覧
           <% end %>
         </li>
-       
-        
          <li>
           <%= link_to admin_customers_path, class: "nav-link text-white" do %>
             <i class="fas fa-users"></i>ユーザー一覧
           <% end %>
         </li>
-        
         <li>
           <%= link_to destroy_admin_session_path, method: :delete, class: "nav-link text-white" do %>
             <i class="fas fa-door-closed"></i>ログアウト
@@ -34,9 +29,11 @@
         </li>
       <% end %>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    <div class="form-group my-2 my-lg-0">
+      <%= search_form_for @search, url: admin_search_path do |f| %>
+      <%= f.search_field :address_cont, class:"form-control mr-sm-2", placeholder:"住所を入れてください" %>
+    </div>
+    <div class="actions"><%= f.submit "search", class:"btn btn-outline-success ml-1" %></div>
+      <% end %>
   </div>
 </nav>

@@ -1,0 +1,51 @@
+<div class="row mt-3">
+  <div class="offset-sm-1 col-sm-10">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>会員ID</th>
+          <th>投稿者名</th>
+          <th>画像</th>
+          <th>住所</th>
+          <th>移動方法</th>
+          <th>喫煙不可</th>
+          <th>トイレ有無</th>
+          <th colspan=1></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% rests.each do |rest| %>
+        <tr>
+          <td><%= rest.customer.id %></td>
+          <td>
+            <%= link_to admin_customer_path(rest.customer) do %>
+              <%= rest.customer.name %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to admin_rest_path(rest) do %>
+              <%= image_tag rest.get_image(100,100) %><br>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to admin_rest_path(rest) do %>
+              <%= rest.address %>
+            <% end %>
+          </td>
+          <td><%= rest.move_method_i18n %></td>
+          <td><%= rest.smoking_area_i18n %></td>
+          <td><%= rest.toilet_i18n %></td>
+          <td><%= link_to "削除", admin_rest_path(rest), method: :delete, data: { confirm: "本当に削除しますか？"}, class:"btn btn-danger" %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 offset-md-4 py-2 mt-5">
+      <%= paginate @rests %>
+    </div>
+  </div>
+</div>

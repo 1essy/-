@@ -24,10 +24,10 @@ class Public::RestsController < ApplicationController
   end
 
   def create
-    @rest_new = Rest.new(rest_params)
-    @rest_new.customer_id = current_customer.id
-    if  @rest_new.save
-      redirect_to rest_path(@rest_new), notice: "投稿しました"
+    @rest = Rest.new(rest_params)
+    @rest.customer_id = current_customer.id
+    if  @rest.save
+      redirect_to rest_path(@rest), notice: "投稿しました"
     else
       render template: "public/homes/top"
     end
