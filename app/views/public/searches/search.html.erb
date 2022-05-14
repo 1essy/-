@@ -11,9 +11,9 @@
         <th>投稿者名</th>
         <th>画像</th>
         <th>住所</th>
-        <th>移動方法</th>
-        <th>喫煙不可</th>
-        <th>トイレ有無</th>
+        <th><%= sort_link(@search, :move_method, "移動方法", hide_indicator: true) %></th>
+        <th><%= sort_link(@search, :somoking_area, "喫煙不可", hide_indicator: true) %></th>
+        <th><%= sort_link(@search, :toilet, "トイレ有無", hide_indicator: true) %></th>
         <th colspan=1></th>
       </tr>
     </thead>
@@ -22,12 +22,12 @@
       <tr>
         <td><%= rest.customer.id %></td>
         <td>
-          <%= link_to admin_customer_path(rest.customer) do %>
+          <%= link_to customer_path(rest.customer) do %>
             <%= rest.customer.name %>
           <% end %>
         </td>
         <td>
-          <%= link_to admin_rest_path(rest) do %>
+          <%= link_to rest_path(rest) do %>
             <%= image_tag rest.get_image(100,100) %><br>
           <% end %>
         </td>

@@ -7,9 +7,9 @@
           <th>投稿者名</th>
           <th>画像</th>
           <th>住所</th>
-          <th>移動方法</th>
-          <th>喫煙不可</th>
-          <th>トイレ有無</th>
+          <th><%= sort_link(@search, :move_method, "移動方法", hide_indicator: true) %></th>
+          <th><%= sort_link(@search, :somoking_area, "喫煙不可", hide_indicator: true) %></th>
+          <th><%= sort_link(@search, :toilet, "トイレ有無", hide_indicator: true) %></th>
           <th colspan=1></th>
         </tr>
       </thead>
@@ -45,7 +45,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-4 offset-md-4 py-2 mt-5">
-      <%= paginate @rests %>
+      <%= paginate rests %>
     </div>
   </div>
 </div>

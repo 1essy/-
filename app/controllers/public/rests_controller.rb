@@ -1,5 +1,5 @@
 class Public::RestsController < ApplicationController
-  before_action :authenticate_customer!
+ 
   before_action :correct_rest, only: [:edit, :update]
  
 
