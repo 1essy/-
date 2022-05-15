@@ -1,6 +1,5 @@
 class Public::CustomersController < ApplicationController
   before_action :ensure_guest_customer, only: [:edit]
-  before_action :authenticate_customer!, except: [:guest_sign_in]
   before_action :correct_customer, only: [:edit, :update]
   
   #退会機能
@@ -31,8 +30,11 @@ class Public::CustomersController < ApplicationController
   end
 
   def update
-    @customer.update(customer_params)
-    redirect_to customer_path(@customer), notice: "ユーザー情報を更新しました"
+    if  @customer.update(customer_params)
+      redirect_to customer_path(@customer), notice: "ユーザー情報を更新しました"
+    else
+      render :edit
+    end
   end
 
   private

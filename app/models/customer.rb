@@ -8,7 +8,11 @@ class Customer < ApplicationRecord
   has_many :rest_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :favorites_rests, through: :favorites, source: :rest
-
+  has_many :view_counts, dependent: :destroy
+  
+  validates :name, presence: true, length: { minimum: 2, maximum: 20}
+  validates :name, uniqueness: true
+  
   def favorited_by?(customer)
     favorites.exists?(customer_id: customer.id)
   end

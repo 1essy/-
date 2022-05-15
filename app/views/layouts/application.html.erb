@@ -7,8 +7,9 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_pack_tag "application", media: "all", "data-turbolinks-track": "reload" %>
-    <%= javascript_pack_tag "application", "data-turbolinks-track": "reload" %>
+    <%= stylesheet_pack_tag "application", media: "all" %>
+    <%= javascript_pack_tag "application" %>
+
   </head>
   <body>
     <header>
@@ -19,8 +20,8 @@
       <% end %>
     </header>
     <main>
-      <div class="alert-success"><%= notice %></div>
-      <div class="alert-danger"><%= alert %></div>
+      <div class="alert-success text-center"><%= notice %></div>
+      <div class="alert-danger text-center"><%= alert %></div>
     <%= yield %>
     </main>
     <footer class="footer text-white bg-dark">

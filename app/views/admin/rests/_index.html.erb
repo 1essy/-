@@ -10,6 +10,7 @@
           <th><%= sort_link(@search, :move_method, "移動方法", hide_indicator: true) %></th>
           <th><%= sort_link(@search, :somoking_area, "喫煙不可", hide_indicator: true) %></th>
           <th><%= sort_link(@search, :toilet, "トイレ有無", hide_indicator: true) %></th>
+          <th>観覧数</th>
           <th colspan=1></th>
         </tr>
       </thead>
@@ -35,6 +36,7 @@
           <td><%= rest.move_method_i18n %></td>
           <td><%= rest.smoking_area_i18n %></td>
           <td><%= rest.toilet_i18n %></td>
+          <td><%= rest.view_counts.count %></td>
           <td><%= link_to "削除", admin_rest_path(rest), method: :delete, data: { confirm: "本当に削除しますか？"}, class:"btn btn-danger" %></td>
         </tr>
         <% end %>

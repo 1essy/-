@@ -15,6 +15,9 @@ class Admin::RestsController < ApplicationController
 
   def show
     @rest = Rest.find(params[:id])
+    unless ViewCount.find_by(customer_id: current_customer.id, rest_id: @rest.id)
+      current_customer.view_counts.create(rest_id: @rest.id)
+    end
   end
 
   def new

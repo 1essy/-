@@ -3,6 +3,8 @@ class Rest < ApplicationRecord
   belongs_to :customer
   has_many :rest_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :view_counts, dependent: :destroy
+  
   has_one_attached :image
 
   #バリデーション

@@ -8,7 +8,6 @@
       <input type="button" value="検索" onclick="codeAddress()" class="btn btn-secondary">
       <div id='map' class="map mt-3"></div>
       <style>
-      
       </style>
       <script>
       let map
@@ -26,7 +25,6 @@
           position:  {lat: 40.7828, lng:-73.9653},
           map: map
         });
-
       }
       let geocoder
 
@@ -47,11 +45,10 @@
         });
       }
       </script>
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWCa5GDZBE09G610gyGsIi4akQup_x7qQ&callback=initMap" async defer></script>
+      <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY']%>"></script>
     </div>
     </div>
     <div class="col-lg-3 mt-4">
-
       <% if @rest.errors.any? %>
         <%= @rest.errors.count %>件のエラーが発生しました
         <ul>
