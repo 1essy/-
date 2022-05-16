@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
+    get "search_rest" => "rests#search_rest"
     get "search" => "searches#search"
     resources :customers, only: [:index, :show, :edit, :update]
     resources :rests, only: [:index, :show, :destroy] do
@@ -24,6 +25,7 @@ Rails.application.routes.draw do
 
   #public
   root :to => "public/homes#top"
+    get "search_rest" => "public/rests#search_rest"
     get "rests/favorites" => "public/favorites#index"
   scope module: :public do
     get "search" => "searches#search"

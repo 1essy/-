@@ -7,6 +7,10 @@ class Admin::RestsController < ApplicationController
     @rests = @search.result.page(params[:page]).per(10)
   end
   
+  def search_rest
+     @rests = Rest.search(params[:keyword]).page(params[:page]).per(10)
+  end
+  
   def index
     @search = Rest.ransack(params[:q])
     @rests = @search.result.page(params[:page]).per(10)

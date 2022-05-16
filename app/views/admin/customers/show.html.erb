@@ -9,6 +9,7 @@
             <%= image_tag rest.image, style: "obfect-fit: contain; height: 250px;  width: 250px;", class: 'img-fluid' %>
           <% end %>
           <ul class="list-group list-group-flush">
+            <li class="list-group-item">住所：<%= rest.address %></li>
             <li class="list-group-item">移動方法：<%= rest.move_method_i18n %></li>
             <li class="list-group-item">喫煙不可：<%= rest.smoking_area_i18n %></li>
             <li class="list-group-item">トイレ有無：<%= rest.toilet_i18n %></li>

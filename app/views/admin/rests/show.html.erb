@@ -20,16 +20,30 @@
             <li class="list-group-item">トイレ有無：<%= @rest.toilet_i18n %></li>
           </ul>
           <div class="card-body">
-            <div class="ml-3 mr-5 d-inline">
+            <div class="ml-3 d-inline mr-5">
               💗<%= @rest.favorites.count %>
-              コメント数：<%= @rest.rest_comments.count %>
               観覧数：<%= @rest.view_counts.count %>
+              タグ：<%= link_to @rest.category, admin_search_rest_path(keyword: @rest.category) %>
             </div>
             <div>
               <%= link_to "削除", rest_path(@rest), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-danger ml-2 mr-1 mt-1" %>
               <%= link_to :back, class:"btn btn-info ml-2 mt-1" do %>
                 <div>戻る</div>
               <% end %>
+              <div id="star-average-<%= @rest.id %>" class="d-inline"></div>
+                <script>
+                  $("#star-average-<%= @rest.id %>").empty();
+                  $("#star-average-<%= @rest.id %>").raty({
+                  size      : 36,
+                  starOff   : '<%= asset_path('star-off.png') %>',
+                  starOn    : '<%= asset_path('star-on.png') %>',
+                  starHalf  : "<%= asset_path('star-half.png') %>",
+                  half      : false,
+                  readOnly: true,
+                  score: <%= @rest.rest_comments.average(:star).to_f.round(1) %>,
+                });
+                </script>
+                <span>(<%= @rest.rest_comments.count %>件)</span>
             </div>
           </div>
       </div>

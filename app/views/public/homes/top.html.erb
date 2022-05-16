@@ -1,4 +1,7 @@
 <% if customer_signed_in? %>
+<div class="text-center">
+  <%= render "layouts/errors", object: @rest %>
+</div>
 <div class="container">
   <div class="row">
     <div class="col-lg-8 col-md-6 col-12">
@@ -49,26 +52,18 @@
     </div>
     </div>
     <div class="col-lg-3 mt-4">
-      <% if @rest.errors.any? %>
-        <%= @rest.errors.count %>件のエラーが発生しました
-        <ul>
-          <% @rest.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      <% end %>
       <%= render "public/rests/form", rest: @rest %>
     </div>
   </div>
 </div>
 <% else %>
 <div class="container">
-  <div class="row d-flex align-items-center">
-    <div class='mx-auto col-11 col-sm-10 col-lg-8 col-xl-6 text-center'>
+  <div class="row d-flex align-items-center ">
+    <div class='mx-auto col-11 col-sm-10 col-lg-8 col-xl-6 text-center '>
       <h1>ぐ～たライフへようこそ！</h1>
-      <p>ここは全国の休憩スポットを探すことができるサイトです。</p>
+      <p>ここは全国の休憩スポットを探すことができるサイトです</p>
       <p>ユーザー登録をしなくても投稿を見ることが可能ですが</p>
-      <p>ユーザー登録をすることでお気に入り機能の利用や投稿が可能になります。</p>
+      <p>ユーザー登録をすることでお気に入り機能の利用や投稿が可能になります</p>
       <div class="btn-wrapper col-10 mx-auto">
         <div class="row">
           <%= link_to 'ゲストログイン',customers_guest_sign_in_path, method: :post, class: "btn btn-secondary btn-sm btn-block mb-3 gest_sign_in" %>

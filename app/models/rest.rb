@@ -4,6 +4,8 @@ class Rest < ApplicationRecord
   has_many :rest_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :view_counts, dependent: :destroy
+ 
+
   
   has_one_attached :image
 
@@ -14,7 +16,10 @@ class Rest < ApplicationRecord
   #座標変換
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
-
+  
+  def self.search(search_word)
+    Rest.where(['category LIKE ?', "#{search_word}"])
+  end
 
   #画像のサイズ変更
   def get_image(width, height)

@@ -14,7 +14,11 @@ class Public::RestsController < ApplicationController
       current_customer.view_counts.create(rest_id: @rest.id) if view_count.nil?
     end
   end
-
+  
+  def search_rest
+     @rests = Rest.search(params[:keyword]).page(params[:page]).per(10)
+  end
+  
   def new
   end
 
@@ -22,8 +26,11 @@ class Public::RestsController < ApplicationController
   end
 
   def update
-    @rest.update(rest_params)
-    redirect_to rest_path(@rest), notice: "投稿を更新しました"
+    if  @rest.update(rest_params)
+      redirect_to rest_path(@rest), notice: "投稿を更新しました"
+    else
+      render :edit
+    end
   end
 
   def create
@@ -45,7 +52,7 @@ class Public::RestsController < ApplicationController
   private
 
   def rest_params
-    params.require(:rest).permit(:describe, :move_method, :smoking_area, :toilet, :image, :address).merge(customer_id: current_customer.id)
+    params.require(:rest).permit(:describe, :move_method, :smoking_area, :toilet, :image, :address, :category).merge(customer_id: current_customer.id)
   end
   def ensure_correct_customer
       @rest = Rest.find(params[:id])

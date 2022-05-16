@@ -5,7 +5,7 @@ ruby '2.6.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.5', '>= 6.1.5.1'
-# Use sqlite3 as the database for Active Record
+# Use sqlite3 as the database for ve Record
 gem 'sqlite3', '~> 1.4'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
@@ -67,3 +67,4 @@ gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
 end
+#gem 'acts-as-taggable-on', '~> 6.0'
