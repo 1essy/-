@@ -9,3 +9,23 @@ Admin.create!(
    email: 'admin@admin',
    password: 'testtest'
 )
+
+Customer.create!(
+   email: "#{n + 1}@#{n + 1}",
+   name: "名#{n + 1}",
+   
+   introduction: "#{n + 1}です。よろしくお願いします。",
+   
+   password: "123456",
+ )
+
+Rest.create!(
+   customer_id: n + 1,
+   source: "https://#{n + 1}",
+   purpose: "#{n + 1}確認のため",
+   performance_review: "#{n + 1}が確認できました。",
+   note:"#{n + 1}が間違ってました。",
+   rate:n + 1,
+   recommended_rank: 0
+ )
+
