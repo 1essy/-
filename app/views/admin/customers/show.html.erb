@@ -6,7 +6,11 @@
       <div class="col-12 col-md-6 col-lg-4">
         <div class="card mt-5 d-flex justify-content-around">
           <%= link_to admin_rest_path(rest), class:"mx-auto" do %>
+          <% if rest.image.attached? %>
             <%= image_tag rest.image, style: "obfect-fit: contain; height: 250px;  width: 250px;", class: 'img-fluid' %>
+          <% else %>
+            <%= image_tag 'no_image.jpg', style: "obfect-fit: contain; height: 250px;  width: 250px;", class: 'img-fluid' %>
+          <% end %>
           <% end %>
           <ul class="list-group list-group-flush">
             <li class="list-group-item">住所：<%= rest.address %></li>

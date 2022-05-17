@@ -23,6 +23,7 @@ class Public::CustomersController < ApplicationController
   def show
     @customer = Customer.find(params[:id])
     @rests = @customer.rests.page(params[:page]).per(12)
+    @customers = Customer.all
   end
 
   def edit

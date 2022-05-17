@@ -7,7 +7,11 @@
     </div>
     <div class="col-lg-6 col-md-6-col-12">
       <div class="card mx-auto" style="width: 31rem;">
-        <%= image_tag @rest.get_image(300,300) %>
+        <% if @rest.image.attached? %>
+          <%= image_tag @rest.image, style: "obfect-fit: contain; height: 300px;  width: 500px;", class: 'd-block img-fluid mx-auto' %>
+        <% else %>
+            <%= image_tag 'no_image.jpg', style: "obfect-fit: contain; height: 300px;  width: 500px;", class: 'img-fluid' %>
+        <% end %>
           <div class="card-body">
             <h5 class="card-title">説明</h5>
             <p class="card-text"><%= @rest.describe %></p>
@@ -22,7 +26,7 @@
           <div class="card-body">
             <div class="ml-3 d-inline mr-5">
               💗<%= @rest.favorites.count %>
-              観覧数：<%= @rest.view_counts.count %>
+              閲覧数：<%= @rest.view_counts.count %>
               タグ：<%= link_to @rest.category, admin_search_rest_path(keyword: @rest.category) %>
             </div>
             <div>

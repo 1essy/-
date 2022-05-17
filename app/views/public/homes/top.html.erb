@@ -13,40 +13,40 @@
       <style>
       </style>
       <script>
-      let map
-      const display = document.getElementById('display')
+        let map
+        const display = document.getElementById('display')
 
-      function initMap(){
-        geocoder = new google.maps.Geocoder()
+        function initMap(){
+          geocoder = new google.maps.Geocoder()
 
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 35.681298, lng:139.766247},
-          zoom: 12,
-        });
+          map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: 35.681298, lng:139.766247},
+            zoom: 12,
+          });
 
-        marker = new google.maps.Marker({
-          position:  {lat: 40.7828, lng:-73.9653},
-          map: map
-        });
-      }
-      let geocoder
+          marker = new google.maps.Marker({
+            position:  {lat: 40.7828, lng:-73.9653},
+            map: map
+          });
+        }
+        let geocoder
 
-      function codeAddress(){
-        let inputAddress = document.getElementById('address').value;
+        function codeAddress(){
+          let inputAddress = document.getElementById('address').value;
 
-        geocoder.geocode( { 'address': inputAddress}, function(results, status) {
-          if (status == 'OK') {
-            map.setCenter(results[0].geometry.location);
-            var marker = new google.maps.Marker({
-                map: map,
-                position: results[0].geometry.location
-            });
-            display.textContent = "検索結果：" + results[ 0 ].geometry.location
-          } else {
-            alert('該当する結果がありませんでした：' + status);
-          }
-        });
-      }
+          geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+            if (status == 'OK') {
+              map.setCenter(results[0].geometry.location);
+              var marker = new google.maps.Marker({
+                  map: map,
+                  position: results[0].geometry.location
+              });
+              display.textContent = "検索結果：" + results[ 0 ].geometry.location
+            } else {
+              alert('該当する結果がありませんでした：' + status);
+            }
+          });
+        }
       </script>
       <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY']%>"></script>
     </div>
@@ -58,8 +58,8 @@
 </div>
 <% else %>
 <div class="container">
-  <div class="row d-flex align-items-center ">
-    <div class='mx-auto col-11 col-sm-10 col-lg-8 col-xl-6 text-center '>
+  <div class="row flex align-items-center ">
+    <div class='mx-auto col-11 col-sm-10 col-lg-8 col-xl-6 text-center'>
       <h1>ぐ～たライフへようこそ！</h1>
       <p>ここは全国の休憩スポットを探すことができるサイトです</p>
       <p>ユーザー登録をしなくても投稿を見ることが可能ですが</p>
@@ -73,6 +73,9 @@
         </div>
         <div class="row">
           <%= link_to '新規登録',new_customer_registration_path, class: "btn btn-success btn-sm btn-block sign_up" %>
+        </div>
+        <div class="row">
+          <%= link_to '管理者ログイン画面',new_admin_session_path, class: "btn btn-danger btn-sm btn-block mt-3 sign_up" %>
         </div>
       </div>
     </div>

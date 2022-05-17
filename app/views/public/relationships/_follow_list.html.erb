@@ -1,0 +1,32 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>名前</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @customers.exists? %>
+    <% @customers.each do |customer| %>
+    <tr>
+      <td>
+        <%= link_to customer_path(customer) do %>
+          <%= customer.name %>
+        <% end %>
+      </td>
+      <td>フォロー数: <%= customer.followings.count %></td>
+      <td>フォロワー数: <%= customer.followers.count %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+  <% else %>
+    <tr>
+      <td>ユーザーはいません</td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+  <% end %>
