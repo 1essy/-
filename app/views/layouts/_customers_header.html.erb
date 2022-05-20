@@ -3,8 +3,11 @@
       <div class="row">
         <div class="col-sm-8 col-md-7 py-4">
           <h4 class="text-white">About</h4>
-          <p class="text-muted">自分が知っている休憩場所を共有しよう！<br>
-          そして色々な人のおすすめ休憩場所を活用してみよう！
+          <p class="text-white" style="line-height:2rem">知っている休憩場所を共有しよう！<br>
+          初めて行く場所でちょっと疲れた・・・・そんなことないですか？<br>
+          このサイトを使えば他の利用者が知っている休憩場所を利用できます。<br>
+          利用方法は簡単！休憩場所を探す場合は住所検索欄から検索するだけ！<br>
+          投稿はログインをして必要な情報を入力すれば、勝手に地図付きで投稿できます。<br>
           </p>
         </div>
         <% if customer_signed_in? %>
@@ -61,13 +64,21 @@
   <div class="navbar navbar-dark bg-dark shadow-sm">
     <div class="container d-flex justify-content-between">
       <strong><%= link_to "ぐ～たライフ", root_path, class:"nav-link text-white" %></strong>
+        <%= search_form_for @search, url: search_path do |f| %>
+        <%= f.label :move_method, '移動方法', class: 'label text-white d-inline' %>
+        <%= f.select :move_method_eq, options_for_select({"徒歩": 0, "バイク": 1, "車": 2, "大型車": 3}), include_blank: '指定なし', class: "search-select" %>
+        <%= f.label :smoking_area_eq, '喫煙', class: 'label text-white d-inline' %>
+        <%= f.select :smoking_area_eq,options_for_select({"可": 1, "不可": 2}), include_blank: '指定なし', class: 'search-select' %>
+        <%= f.label :toilet_eq, 'トイレ', class: 'label text-white d-inline' %>
+        <%= f.select :toilet_eq, options_for_select({"無し": 1, "有る": 2}), include_blank: '指定なし', class: 'search-select' %>
+      <div class="form-group my-2 my-lg-0 form-inline">
+        <%= f.search_field :category_cont, class:"form-control mr-sm-2", placeholder:"タグをいれてください" %>
+        <%= f.search_field :address_cont, class:"form-control mr-sm-2", placeholder:"住所を入れてください" %>
+        <%= f.submit "検索", class:"btn btn-outline-success" %>
+      </div>
     </div>
-    <div class="form-group my-2 my-lg-0 form-inline">
-      <%= search_form_for @search, url: search_path, class:"d-inline" do |f| %>
-      <%= f.search_field :address_cont, class:"form-control mr-sm-2", placeholder:"住所を入れてください" %>
-      <%= f.submit "search", class:"btn btn-outline-success" %>
-    </div>
-      <% end %>
+
+        <% end %>
    <% if customer_signed_in? %>
     <div class="navbar navbar-dark bg-dark shadow-sm">
       <div class="container d-flex justify-content-between">

@@ -24,16 +24,13 @@
           <tr>
             <td>
               <%= link_to customer_path(rest.customer) do %>
+                <%= image_tag rest.customer.get_profile_image, style: "obfect-fit: contain; height: 40px;  width: 40px;", class: 'img-fluid rounded-circle' %>
                 <%= rest.customer.name %>
               <% end %>
             </td>
             <td>
               <%= link_to rest_path(rest) do %>
-              <% if rest.image.attached? %>
-                <%= image_tag rest.image, style: "obfect-fit: contain; height: 100px;  width: 100px;", class: 'img-fluid' %>
-              <% else %>
-                <%= image_tag 'no_image.jpg', style: "obfect-fit: contain; height: 100px;  width: 100px;", class: 'img-fluid' %>
-              <% end %>
+                <%= image_tag rest.get_rest_image, style: "obfect-fit: contain; height: 100px;  width: 100px;", class: 'img-fluid' %>
               <% end %>
             </td>
             <td>
@@ -50,6 +47,8 @@
               <div class="d-inline" id="favorite_buttons_<%= rest.id %>" >
               <% if customer_signed_in? %>
                 <%= render "public/favorites/favorites", rest: rest %>
+              <% else %>
+                💗<%= rest.favorites.count %>
               <% end %>
               </div>
             </td>
@@ -62,7 +61,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-4 offset-md-4 py-2 mt-5">
-      <%= paginate rests %>
+      <%= paginate rests, theme: 'bootstrap-5' %>
     </div>
   </div>
 </div>

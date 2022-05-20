@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
+    delete "customer/destroy_all" => "rests#destroy_all"
     get "search_rest" => "rests#search_rest"
     get "search" => "searches#search"
     resources :customers, only: [:index, :show, :edit, :update]

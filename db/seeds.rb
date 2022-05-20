@@ -134,7 +134,7 @@ rest_comment = RestComment.create!(
    rest_id: 1,
    comment: "凄くきれいです。近くに行くことが多いので今度寄ってみます★",
    star: 4,
-)
+ )
 
 rest_comment2 = RestComment.create!(
    customer_id: 1,

@@ -4,14 +4,10 @@
       <div class="col-12 col-md-6 col-lg-4">
         <div class="card mt-5 d-flex justify-content-around">
           <%= link_to rest_path(rest),class:"mx-auto" do %>
-          <% if rest.image.attached? %>
-            <%= image_tag rest.image, style: "obfect-fit: contain; height: 250px;  width: 250px;", class: 'img-fluid' %>
-          <% else %>
-            <%= image_tag 'no_image.jpg', style: "obfect-fit: contain; height: 250px;  width: 250px;", class: 'img-fluid' %>
-          <% end %>
+            <%= image_tag rest.get_rest_image, style: "obfect-fit: contain; height: 250px;  width: 250px;", class: 'img-fluid' %>
           <% end %>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">住所：<%= rest.address %></li>
+            <li class="list-group-item">住所：<%= rest.address.truncate(18, omission: "...") %></li>
             <li class="list-group-item">移動方法：<%= rest.move_method_i18n %></li>
             <li class="list-group-item">喫煙不可：<%= rest.smoking_area_i18n %></li>
             <li class="list-group-item">トイレ有無：<%= rest.toilet_i18n %></li>
@@ -22,9 +18,7 @@
               <% end %>
               </div>
                 <%= rest.rest_comments.count %>コメント
-            </li>
-            <li class="list-group-item">
-              <%= link_to "詳細", rest_path(rest), class:"btn btn-sm btn-primary ml-4" %>
+                <%= link_to "詳細", rest_path(rest), class:"btn btn-sm btn-primary ml-4" %>
             </li>
           </ul>
         </div>
@@ -35,7 +29,7 @@
 <div class="container">
    <div class="row">
      <div class="col-md-4 offset-md-4 py-2 mt-5">
-       <%= paginate rests %>
+       <%= paginate rests, theme: 'bootstrap-5' %>　
      </div>
    </div>
  </div>

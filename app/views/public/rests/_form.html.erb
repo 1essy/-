@@ -22,7 +22,6 @@
     <%= f.select :move_method, Rest.move_methods_i18n.invert, class: "rest_move_method col-sm-6" %>
   </div>
   <div class="form-group">
-
     <%= f.label :トイレ, class: "col-sm-5" %>
     <%= f.select :toilet, Rest.toilets_i18n.invert, class: "rest_toilet" %>
   </div>
@@ -31,7 +30,10 @@
     <%= f.select :smoking_area, Rest.smoking_areas_i18n.invert, class: "rest_move_method" %>
   </div>
   <div class="form-group">
-    <%= f.submit "create", class: "btn btn-success" %>
+    <%= f.submit "投稿", class: "btn btn-success d-inline" %>
+    <% unless controller.controller_name == 'homes' && controller.action_name == 'top' %>
+      <%= link_to "戻る", rest_path(@rest), class:"btn btn-info ml-3" %>
+    <% end %>
   </div>
 </div>
 <% end %>

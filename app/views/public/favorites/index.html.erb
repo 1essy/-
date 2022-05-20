@@ -1,2 +1,10 @@
-<h3 class="text-center mt-2"><%= @customer.name %>さんのお気に入り一覧</h3>
-  <%= render "public/customers/show", rests: @rests %>
+<h3 class="text-center mt-2">
+  <% if @customer.profile_image.attached? %>
+    <%= image_tag @customer.profile_image, style: "obfect-fit: contain; height: 40px;  width: 40px;", class: 'img-fluid rounded-circle' %>
+  <% else %>
+    <%= image_tag 'no_image.jpg', style: "obfect-fit: contain; height: 40px;  width: 40px;", class: 'img-fluid rounded-circle' %>
+  <% end %>
+  <%= @customer.name %>さんのお気に入り一覧
+</h3>
+<h5 class="text-center"><%= link_to "ユーザー情報を編集する", edit_customer_path(current_customer), class:"btn btn-primary" %></h5>
+<%= render "public/customers/show", rests: @rests %>

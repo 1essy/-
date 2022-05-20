@@ -21,7 +21,7 @@ class Admin::RestsController < ApplicationController
     @rest = Rest.find(params[:id])
 
   end
-  
+
 
   def new
   end
@@ -32,8 +32,15 @@ class Admin::RestsController < ApplicationController
   def destroy
     @rest = Rest.find(params[:id])
     @rest.destroy
-    redirect_to admin_rests_path(current_customer), alert:"投稿を削除しました"
+    redirect_to admin_rests_path, alert:"投稿を削除しました"
   end
+
+  #def destroy_all
+    #@customer
+    #@rests = @rests.customer
+    #@rests.destroy_all
+    #redirect_to request.referer
+  #end
 
   private
 

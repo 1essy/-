@@ -20,7 +20,8 @@
           <td><%= customer.id %></td>
           <td>
             <%= link_to admin_customer_path(customer) do %>
-            <%= customer.name %>
+              <%= image_tag customer.get_profile_image, style: "obfect-fit: contain; height: 30px;  width: 30px;", class: 'img-fluid rounded-circle' %>
+              <%= customer.name %>
             <% end %>
             </td>
           <td><%= customer.email %></td>
@@ -28,7 +29,7 @@
             <% if customer.is_deleted == true %>
             有効ユーザー
             <% else %>
-            退会ユーザー
+              退会ユーザー
             <% end %>
           </td>
         </tr>
@@ -41,7 +42,7 @@
  <div class="container">
    <div class="row">
    <div class="col-md-4 offset-md-4 py-2 mt-5">
-   <%= paginate @customers %>
+   <%= paginate @customers, theme: 'bootstrap-5' %>　
    </div>
    </div>
  </div> 

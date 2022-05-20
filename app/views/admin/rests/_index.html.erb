@@ -4,7 +4,7 @@
       <thead>
         <tr>
           <th style="width: 7%">会員ID</th>
-          <th style="width: 7%">投稿者名</th>
+          <th style="width: 8%">投稿者名</th>
           <th>画像</th>
           <th style="width: 11%">住所</th>
           <th style="width: 10%"><%= sort_link(@search, :move_method, "移動方法", hide_indicator: true) %></th>
@@ -21,16 +21,13 @@
           <td><%= rest.customer.id %></td>
           <td>
             <%= link_to admin_customer_path(rest.customer) do %>
+              <%= image_tag rest.customer.get_profile_image, style: "obfect-fit: contain; height: 60px;  width: 60px;", class: 'img-fluid rounded-circle' %><br>
               <%= rest.customer.name %>
             <% end %>
           </td>
           <td>
             <%= link_to admin_rest_path(rest) do %>
-            <% if rest.image.attached? %>
-              <%= image_tag rest.image, style: "obfect-fit: contain; height: 100px;  width: 100px;", class: 'img-fluid' %>
-            <% else %>
-              <%= image_tag 'no_image.jpg', style: "obfect-fit: contain; height: 100px;  width: 100px;", class: 'img-fluid' %>
-            <% end %>
+              <%= image_tag rest.get_rest_image, style: "obfect-fit: contain; height: 100px;  width: 100px;", class: 'img-fluid' %>
             <% end %>
           </td>
           <td>
@@ -53,7 +50,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-4 offset-md-4 py-2 mt-5">
-      <%= paginate rests %>
+      <%= paginate rests, theme: 'bootstrap-5' %>
     </div>
   </div>
 </div>

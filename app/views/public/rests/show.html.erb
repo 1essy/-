@@ -4,15 +4,13 @@
   <div class="row">
     <div class="col-lg-6 col-md-6-col-12 text-right">
       <%= render "public/homes/map" %>
+    <div id="rest_comments_error">
       <%= render "layouts/errors", object: @rest_comment %>
+    </div>
     </div>
     <div class="col-lg-6 col-md-6-col-12">
       <div class="card mx-auto" style="width: 31rem;">
-        <% if @rest.image.attached? %>
-          <%= image_tag @rest.image, style: "obfect-fit: contain; height: 300px;  width: 500px;", class: 'img-fluid mx-auto' %>
-        <% else %>
-          <%= image_tag 'no_image.jpg', style: "obfect-fit: contain; height: 300px;  width: 500px;", class: 'img-fluid' %>
-        <% end %>
+          <%= image_tag @rest.get_rest_image, style: "obfect-fit: contain; height: 300px;  width: 500px;", class: 'img-fluid mx-auto' %>
           <div class="card-body">
             <h5 class="card-title">説明</h5>
             <p class="card-text"><%= @rest.describe %></p>
@@ -37,12 +35,11 @@
             <div>
               <% if @rest.customer == current_customer %>
                 <%= link_to "編集する", edit_rest_path(@rest), class:"btn btn-primary mt-1" %>
-                <%= link_to "削除", rest_path(@rest), method: :delete, data: { confirm: '本当に消しますか？' }, class:"btn btn-danger ml-2 mt-1" %>
+                <%= link_to "マイページ", customer_path(current_customer), class:"btn btn-info ml-2 mt-1" %>
+                <%= link_to "削除", rest_path(@rest), method: :delete, data: { confirm: '本当に消しますか？' }, class:"btn btn-danger ml-2 mt-1" %><br>
               <% end %>
-              <%= link_to :back, class:"btn btn-info ml-2 mt-1" do %>
-                <div>戻る</div>
-              <% end %>
-              <div id="star-average-<%= @rest.id %>" class="d-inline"></div>
+
+              <div id="star-average-<%= @rest.id %>" class="d-inline mt-1"></div>
                 <script>
                   $("#star-average-<%= @rest.id %>").empty();
                   $("#star-average-<%= @rest.id %>").raty({
@@ -83,10 +80,10 @@
           </div>
           <% end %>
       <% end %>
-
+          <% if @rest.rest_comments.present? %>
           <div>コメント一覧</div>
           <% @rest.rest_comments.each do |rest_comment| %>
-            <br><%= rest_comment.created_at.strftime('%Y/%m/%d') %>
+            <%= rest_comment.created_at.strftime('%Y/%m/%d') %>
             [<%= rest_comment.customer.name %>]<br>
             <div  id="star-rate<%= rest_comment.id%>"></div>
             <script>
@@ -103,6 +100,7 @@
             <% if rest_comment.customer == current_customer %>
               <%= link_to "削除", rest_rest_comment_path(rest_comment.rest, rest_comment), method: :delete, class:"btn btn-danger btn-sm mb-2 mt-2" %>
             <% end %>
+          <% end %>
           <% end %>
       </div>
     </div>

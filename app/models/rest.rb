@@ -20,8 +20,16 @@ class Rest < ApplicationRecord
   def self.search(search_word)
     Rest.where(['category LIKE ?', "#{search_word}"])
   end
+  
+  def get_rest_image
+    if image.attached?
+      image
+    else
+      "no_image.jpg"
+    end
+  end
 
- 
+
 
   enum move_method: { on_foot: 0, motorcycle: 1, car: 2, large_car: 3 }
   enum smoking_area: { smoking_area_not_sure: 0, possible: 1, impossible: 2 }

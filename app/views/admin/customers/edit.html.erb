@@ -12,6 +12,10 @@
         <%= f.label :ユーザーid, class: "col-sm-5" %>
         <%= f.label @customer.id, class: "col-sm-7" %>
       </div>
+      <div class="form-group">
+        <%= f.label :画像, class: "col-sm-5 d-inline" %>
+        <%= f.file_field :profile_image, accept: "image/*" %>
+      </div>
       <div class="form-group row">
         <%= f.label :名前, class: "col-sm-5" %>
         <%= f.text_field :name, class: "form-control col-sm-7" %>
@@ -22,12 +26,12 @@
       </div>
       <div class="row">
         <%= f.label :会員ステータス, class: "ml-3" %>
-        <div class="form-check ml-4">
-          <%= f.radio_button :is_deleted, :true %>
-          <%= f.label :is_deleted, "有効会員" %>
-          <%= f.radio_button :is_deleted, :false %>
-          <%= f.label :is_deleted, "退会済" %>
-        </div>
+      </div>
+      <div class="form-check ml-4">
+        <%= f.radio_button :is_deleted, :true %>
+        <%= f.label :is_deleted, "有効会員" %>
+        <%= f.radio_button :is_deleted, :false %>
+        <%= f.label :is_deleted, "退会済" %>
       </div>
       <div class="row">
         <%= f.submit "変更を保存する", class:"btn btn-primary mt-4 mx-auto" %>

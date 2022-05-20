@@ -21,9 +21,16 @@ class Admin::CustomersController < ApplicationController
       render :edit
     end
   end
+  
+  #def destroy_all
+    
+    #@rests = @customer.rests
+    #@rests.destroy_all
+    #redirect_to request.referer
+  #end
 
   private
   def customer_params
-    params.require(:customer).permit(:name, :email, :password, :is_deleted)
+    params.require(:customer).permit(:name, :email, :password, :is_deleted, :profile_image)
   end
 end

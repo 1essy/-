@@ -1,7 +1,7 @@
 class Public::CustomersController < ApplicationController
-  before_action :ensure_guest_customer, only: [:edit]
+  before_action :ensure_guest_customer, only: [:edit, :withdrawal]
   before_action :correct_customer, only: [:edit, :update]
-  
+
   #退会機能
   def withdrawal#退会機能
     @customer = Customer.find(params[:id])
@@ -41,7 +41,7 @@ class Public::CustomersController < ApplicationController
   private
 
   def customer_params
-    params.require(:customer).permit(:name, :email, :password, :is_deleted)
+    params.require(:customer).permit(:name, :email, :password, :is_deleted, :profile_image)
   end
 
   def correct_customer
@@ -54,7 +54,7 @@ class Public::CustomersController < ApplicationController
   def ensure_guest_customer
     @customer = Customer.find(params[:id])
     if @customer.name == "ゲスト"
-      redirect_to customer_path(current_customer) , alert: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
+      redirect_to customer_path(current_customer) , alert: 'ゲストユーザーはこのページへ遷移できません。'
     end
   end
 end
