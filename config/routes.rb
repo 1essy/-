@@ -15,10 +15,9 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    delete "customer/destroy_all" => "rests#destroy_all"
     get "search_rest" => "rests#search_rest"
     get "search" => "searches#search"
-    resources :customers, only: [:index, :show, :edit, :update]
+    resources :customers, only: [:index, :show, :edit, :update, :destroy]
     resources :rests, only: [:index, :show, :destroy] do
       resources :rest_comments, only: [:destroy]
     end
@@ -37,7 +36,7 @@ Rails.application.routes.draw do
       resource :favorites, only: [:create, :destroy]
       resources :rest_comments, only: [:create, :destroy, :index]
     end
-    resources :customers, only: [:index, :show, :edit, :update] do
+    resources :customers, only: [:index, :show, :edit, :update, :destroy] do
       resource :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'

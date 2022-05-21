@@ -6,12 +6,11 @@
   <div class="row">
     <div class="col-lg-8 col-md-6 col-12">
       <div class="map-wrap">
-      <h2 class="text-center mt-5">休憩地図</h2>
+      <h2 class="text-center mt-5"></h2>
       <input id="address" type="textbox" value="" class="">
       <input type="button" value="検索" onclick="codeAddress()" class="btn btn-secondary">
       <div id='map' class="map mt-3"></div>
-      <style>
-      </style>
+
       <script>
         let map
         const display = document.getElementById('display')
@@ -48,7 +47,6 @@
           });
         }
       </script>
-      <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY']%>"></script>
     </div>
     </div>
     <div class="col-lg-3 mt-4">

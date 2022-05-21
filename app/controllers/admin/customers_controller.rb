@@ -22,12 +22,11 @@ class Admin::CustomersController < ApplicationController
     end
   end
   
-  #def destroy_all
-    
-    #@rests = @customer.rests
-    #@rests.destroy_all
-    #redirect_to request.referer
-  #end
+  def destroy
+    @customer = Customer.find(params[:id])
+    @customer.destroy
+    redirect_to admin_customers_path, alert:"ユーザーを削除しました"
+  end
 
   private
   def customer_params

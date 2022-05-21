@@ -64,20 +64,19 @@
   <div class="navbar navbar-dark bg-dark shadow-sm">
     <div class="container d-flex justify-content-between">
       <strong><%= link_to "ぐ～たライフ", root_path, class:"nav-link text-white" %></strong>
+
         <%= search_form_for @search, url: search_path do |f| %>
+        <div class="form-group my-2 my-lg-0 d-inline form-inline">
         <%= f.label :move_method, '移動方法', class: 'label text-white d-inline' %>
         <%= f.select :move_method_eq, options_for_select({"徒歩": 0, "バイク": 1, "車": 2, "大型車": 3}), include_blank: '指定なし', class: "search-select" %>
         <%= f.label :smoking_area_eq, '喫煙', class: 'label text-white d-inline' %>
-        <%= f.select :smoking_area_eq,options_for_select({"可": 1, "不可": 2}), include_blank: '指定なし', class: 'search-select' %>
+        <%= f.select :smoking_area_eq, options_for_select({"可": 1, "不可": 2}), include_blank: '指定なし', class: 'search-select' %>
         <%= f.label :toilet_eq, 'トイレ', class: 'label text-white d-inline' %>
         <%= f.select :toilet_eq, options_for_select({"無し": 1, "有る": 2}), include_blank: '指定なし', class: 'search-select' %>
-      <div class="form-group my-2 my-lg-0 form-inline">
-        <%= f.search_field :category_cont, class:"form-control mr-sm-2", placeholder:"タグをいれてください" %>
-        <%= f.search_field :address_cont, class:"form-control mr-sm-2", placeholder:"住所を入れてください" %>
+        <%= f.search_field :address_or_category_or_customer_name_cont, class:"form-control mr-sm-2" %>
         <%= f.submit "検索", class:"btn btn-outline-success" %>
       </div>
     </div>
-
         <% end %>
    <% if customer_signed_in? %>
     <div class="navbar navbar-dark bg-dark shadow-sm">

@@ -35,13 +35,6 @@ class Admin::RestsController < ApplicationController
     redirect_to admin_rests_path, alert:"投稿を削除しました"
   end
 
-  #def destroy_all
-    #@customer
-    #@rests = @rests.customer
-    #@rests.destroy_all
-    #redirect_to request.referer
-  #end
-
   private
 
   def set_q

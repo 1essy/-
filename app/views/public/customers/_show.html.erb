@@ -17,7 +17,8 @@
                 <%= render "public/favorites/favorites", rest: rest %>
               <% end %>
               </div>
-                <%= rest.rest_comments.count %>コメント
+                <div class="mr-1 d-inline"><%= rest.rest_comments.count %>コメント</div>
+                タグ：<%= link_to rest.category, search_rest_path(keyword: rest.category) %>
                 <%= link_to "詳細", rest_path(rest), class:"btn btn-sm btn-primary ml-4" %>
             </li>
           </ul>
@@ -29,7 +30,7 @@
 <div class="container">
    <div class="row">
      <div class="col-md-4 offset-md-4 py-2 mt-5">
-       <%= paginate rests, theme: 'bootstrap-5' %>　
+       <%= paginate rests, theme: 'bootstrap-5' %>
      </div>
    </div>
  </div>
