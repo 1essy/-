@@ -16,6 +16,10 @@ class Customer < ApplicationRecord
   # 一覧画面で使う
   has_many :followings, through: :relationships, source: :followed
   has_many :followers, through: :reverse_of_relationships, source: :follower
+  #通知機能
+  has_many :notices, dependent: :destroy
+  has_many :active_notices, class_name: 'Notice', foreign_key: 'send_id', dependent: :destroy
+  has_many :passive_notices, class_name: 'Notice', foreign_key: 'receive_id', dependent: :destroy
 
   has_one_attached :profile_image
 
@@ -41,6 +45,18 @@ class Customer < ApplicationRecord
   def following?(customer)
     followings.include?(customer)
   end
+  
+  # フォロー通知
+  def create_notice_follow!(current_customer)
+    temp = Notice.where(["send_id = ? and receive_id = ? and action = ? ",current_customer.id, id, 'follow'])
+    if temp.blank?
+      notice = current_customer.active_notices.new(
+        receive_id: id,
+        action: 'follow'
+      )
+      notice.save if notice.valid?
+    end
+  end
 
   #バリデーション
   validates :name, presence: true, length: { minimum: 2, maximum: 20}
@@ -49,6 +65,7 @@ class Customer < ApplicationRecord
   def favorited_by?(customer)
     favorites.exists?(customer_id: customer.id)
   end
+  
   #ゲストユーザー作成機能
   def self.guest
     find_or_create_by!(name: "ゲスト" ,email: 'guest@example.com') do |customer|

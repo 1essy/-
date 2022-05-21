@@ -20,7 +20,7 @@
             <div class="d-inline mr-3" id="favorite_buttons_<%= rest.id %>" >
               💗<%= rest.favorites.count %>
             </div>
-              <%= rest.rest_comments.count %>コメント
+              <div class="mr-1 d-inline"><%= rest.rest_comments.count %>コメント</div>
               <%= link_to "詳細", admin_rest_path(rest), class:"btn btn-sm btn-primary ml-4" %>
             </li
           </ul>
@@ -32,7 +32,7 @@
 <div class="container">
    <div class="row">
      <div class="col-md-4 offset-md-4 py-2 mt-5">
-       <%= paginate @rests, theme: 'bootstrap-5' %>　
+       <%= paginate @rests, theme: 'bootstrap-5' %>
      </div>
    </div>
  </div>

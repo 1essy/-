@@ -18,8 +18,7 @@
               <% end %>
               </div>
                 <div class="mr-1 d-inline"><%= rest.rest_comments.count %>コメント</div>
-                タグ：<%= link_to rest.category, search_rest_path(keyword: rest.category) %>
-                <%= link_to "詳細", rest_path(rest), class:"btn btn-sm btn-primary ml-4" %>
+                <%= link_to "詳細", rest_path(rest), class:"btn btn-sm btn-primary ml-2" %>
             </li>
           </ul>
         </div>

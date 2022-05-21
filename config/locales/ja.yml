@@ -31,7 +31,9 @@
       rest:
         describe: "説明"
         address: "住所"
+        category: "タグ"
       rest_comment:
         star: "星"
         comment: "コメント"
+        
 

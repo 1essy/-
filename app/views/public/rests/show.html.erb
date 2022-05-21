@@ -29,7 +29,7 @@
               <% end %>
             </div>
             <div class="d-inline">
-              閲覧数：<%= @rest.view_counts.count %>
+              閲覧数：<%= @rest.view_counts.count %>　
               タグ：<%= link_to @rest.category, search_rest_path(keyword: @rest.category) %>
             </div>
             <div>
@@ -98,7 +98,7 @@
             </script>
             <%= rest_comment.comment %><br>
             <% if rest_comment.customer == current_customer %>
-              <%= link_to "削除", rest_rest_comment_path(rest_comment.rest, rest_comment), method: :delete, class:"btn btn-danger btn-sm mb-2 mt-2" %>
+              <%= link_to "削除", rest_rest_comment_path(rest_comment.rest, rest_comment), method: :delete, data: { confirm: '本当に消しますか？' }, class:"btn btn-danger btn-sm mb-2 mt-2" %>
             <% end %>
           <% end %>
           <% end %>

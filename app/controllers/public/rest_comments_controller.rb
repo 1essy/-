@@ -4,6 +4,7 @@ class Public::RestCommentsController < ApplicationController
     @rest_comment = current_customer.rest_comments.new(rest_comment_params)
     @rest_comment.rest_id = @rest.id
     if  @rest_comment.save
+        @rest.create_notice_rest_comment!(current_customer, @rest_comment.id)
       redirect_to rest_path(@rest), notice: 'コメントを投稿しました'
     else
         render template: "public/rests/show"

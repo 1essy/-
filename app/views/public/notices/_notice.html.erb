@@ -1,0 +1,28 @@
+<% sender = Customer.find(notice.send_id) %>
+<% receiver = Customer.find(notice.receive_id) %>
+<li class="list-unstyled">
+  <%= link_to customer_path(sender) do %>
+    <%= image_tag sender.get_profile_image, style: "obfect-fit: contain; height: 50px;  width: 50px;", class: 'img-fluid rounded-circle' %>
+    <strong><%= sender.name %></strong>
+  <% end %>さんが
+
+  <% case notice.action when 'follow' then %>
+      あなたをフォローしました
+  <% when 'favorite' then %>
+    <%= link_to 'あなたの投稿', notice.rest, style: "font-weight: bold;" %>
+    をお気に入りに追加しました
+  <% when 'rest_comment' then %>
+    <% if notice.rest.customer_id == notice.receive.id %>
+     <%= link_to "あなたの投稿", notice.rest, style: "font-weight: bold;" %>
+    <% else %>
+      <%= link_to rest_path(notice.rest) do %>
+        
+        <%= image_tag notice.rest.customer.get_profile_image, style: "obfect-fit: contain; height: 50px;  width: 50px;", class: 'img-fluid rounded-circle' %>
+        <strong><%= notice.rest.customer.name + 'さんの投稿' %></strong>
+      <% end %>
+    <% end %>
+    にコメントしました
+  <% end %>
+</li>
+  <div class="small text-muted text-right"><%= time_ago_in_words(notice.created_at).upcase %>前</div>
+    

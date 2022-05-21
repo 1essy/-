@@ -9,6 +9,7 @@ class Public::FavoritesController < ApplicationController
     @rest = Rest.find(params[:rest_id])
     favorite = current_customer.favorites.new(rest_id: @rest.id)
     favorite.save
+    @rest.create_notice_favorite!(current_customer)
   end
 
   def destroy
