@@ -47,3 +47,43 @@ main {
     background: #f0f7ff;
     border: dashed 2px #5b8bd0;/*点線*/
 }
+
+.search-wrapper {
+    height: 80px;
+    background-color: lightgray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+}
+
+.select-box-wrapper {
+  display: inline-block;
+}
+.select-box { display: inline-block; }
+
+@media only screen and (max-width: 767px) {
+.search-wrapper {
+    width: 100%;
+    height: auto;
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+.select-box {
+    display: flex;
+    flex-direction: column;
+    padding: 4px;
+}
+
+form.rest_search { width: 100%; }
+.select-box-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 4px;
+    margin-bottom: 16px;
+    width: 100%;
+    min-width: 100%;
+}
+.search-field { display: inline-block; width: 75%; }
+input[type='submit'].search { margin: 0; }
+}

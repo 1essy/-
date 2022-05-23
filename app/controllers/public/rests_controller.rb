@@ -14,11 +14,11 @@ class Public::RestsController < ApplicationController
       current_customer.view_counts.create(rest_id: @rest.id) if view_count.nil?
     end
   end
-  
+
   def search_rest
      @rests = Rest.search(params[:keyword]).page(params[:page]).per(10)
   end
-  
+
   def new
   end
 
@@ -60,6 +60,9 @@ class Public::RestsController < ApplicationController
         redirect_to root_path
       end
   end
+  def search_params
++    params.require(:q).permit(:address_cont)
+end
 
   def correct_rest
     @rest = Rest.find(params[:id])

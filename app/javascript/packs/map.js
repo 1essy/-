@@ -3,7 +3,7 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   const script = document.createElement("script")
-  script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCWCa5GDZBE09G610gyGsIi4akQup_x7qQ&callback=initMap"
+  // script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCWCa5GDZBE09G610gyGsIi4akQup_x7qQ&callback=initMap"
   script.async = true
   const mapEl = document.querySelector("#map")
 

@@ -11,9 +11,8 @@ class Rest < ApplicationRecord
   has_one_attached :image
 
   #バリデーション
-  validates :describe, presence: true,length:{ minimum: 10, maximum: 30}
-  validates :address, presence: true,length:{ minimum: 8, maximum: 30}
-  validates :category, presence: true, length: { minimum: 2, maximum: 7}
+  validates :describe, presence: true,length:{ minimum: 5, maximum: 100}
+  validates :address, presence: true,length:{ maximum: 30}
 
   #座標変換
   geocoded_by :address
@@ -41,7 +40,7 @@ class Rest < ApplicationRecord
   def favorited_by?(customer)
     favorites.exists?(customer_id: customer.id)
   end
-  
+
   # いいね通知機能
   def create_notice_favorite!(current_customer)
     # すでに「いいね」されているか検索
@@ -60,7 +59,7 @@ class Rest < ApplicationRecord
       notice.save if notice.valid?
     end
   end
-  
+
   # コメント通知機能
   def create_notice_rest_comment!(current_customer, rest_comment_id)
     # 自分以外にコメントしている人をすべて取得し、全員に通知を送る
@@ -86,5 +85,5 @@ class Rest < ApplicationRecord
     end
     notice.save if notice.valid?
   end
-  
+
 end

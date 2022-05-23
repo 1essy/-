@@ -17,7 +17,7 @@ class Customer < ApplicationRecord
   has_many :followings, through: :relationships, source: :followed
   has_many :followers, through: :reverse_of_relationships, source: :follower
   #通知機能
-  has_many :notices, dependent: :destroy
+  
   has_many :active_notices, class_name: 'Notice', foreign_key: 'send_id', dependent: :destroy
   has_many :passive_notices, class_name: 'Notice', foreign_key: 'receive_id', dependent: :destroy
 
@@ -60,7 +60,6 @@ class Customer < ApplicationRecord
 
   #バリデーション
   validates :name, presence: true, length: { minimum: 2, maximum: 20}
-  validates :name, uniqueness: true
 
   def favorited_by?(customer)
     favorites.exists?(customer_id: customer.id)

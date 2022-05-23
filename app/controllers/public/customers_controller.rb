@@ -1,5 +1,5 @@
 class Public::CustomersController < ApplicationController
-  before_action :ensure_guest_customer, only: [:edit, :destroy, :withdrawal]
+  before_action :ensure_guest_customer, only: [:edit, :withdrawal]
   before_action :correct_customer, only: [:edit, :update]
 
   #退会機能
@@ -38,11 +38,6 @@ class Public::CustomersController < ApplicationController
     end
   end
   
-  def destroy
-    @customer = Customer.find(params[:id])
-    @customer.destroy
-    redirect_to root_path, alert:"退会しました"
-  end
 
   private
 
