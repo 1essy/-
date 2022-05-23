@@ -112,8 +112,8 @@
             <%= f.select :toilet_eq, options_for_select({"有り": 1, "無し": 2}), include_blank: '指定なし', class: 'search-select' %>
           </div>
         </div>
-        <%#空白検索無効用= f.search_field :address_or_category_or_customer_name_cont, required: true, placeholder: '検索ワード', class:"form-control mr-sm-2 search-field mr-1" %>
-        <%= f.search_field :address_or_category_or_customer_name_cont, placeholder: '検索ワード', class:"form-control mr-sm-2 search-field mr-1" %>
+        <%= f.search_field :address_or_category_or_customer_name_cont, required: true, placeholder: '検索ワード', class:"form-control mr-sm-2 search-field mr-1" %>
+        <%#= f.search_field :address_or_category_or_customer_name_cont, placeholder: '検索ワード', class:"form-control mr-sm-2 search-field mr-1" %>
         <%= f.submit "検索", class:"btn btn-success search" %>
         <% end %>
       </div>

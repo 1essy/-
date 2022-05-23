@@ -13,6 +13,7 @@ class Rest < ApplicationRecord
   #バリデーション
   validates :describe, presence: true,length:{ minimum: 5, maximum: 100}
   validates :address, presence: true,length:{ maximum: 30}
+  validates :category, presence: true,length:{ maximum: 7}
 
   #座標変換
   geocoded_by :address

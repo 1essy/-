@@ -20,14 +20,15 @@
             <li class="list-group-item">トイレ有無：<%= @rest.toilet_i18n %></li>
           </ul>
           <div class="card-body">
-            <div class="ml-3 d-inline mr-5">
+            <div class=" d-inline mr-5">
               💗<%= @rest.favorites.count %>
               閲覧数：<%= @rest.view_counts.count %>　
               タグ：<%= link_to @rest.category, admin_search_rest_path(keyword: @rest.category) %>
+              <div>投稿日：<%= @rest.created_at.strftime('%Y/%m/%d') %></div>
             </div>
             <div>
-              <%= link_to "投稿一覧へ戻る", admin_rests_path, class:"btn btn-info ml-2 mt-1" %>
-              <%= link_to "削除", admin_rest_path(@rest), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-danger ml-2 mr-1 mt-1" %>
+              <%= link_to "投稿一覧へ戻る", admin_rests_path, class:"btn btn-info mt-1" %>
+              <%= link_to "削除", admin_rest_path(@rest), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-danger  mr-1 mt-1" %>
               <div id="star-average-<%= @rest.id %>" class="d-inline"></div>
                 <script>
                   $("#star-average-<%= @rest.id %>").empty();
@@ -63,9 +64,8 @@
           });
         </script>
         <%= rest_comment.comment %><br>
-          <%= link_to "削除", admin_rest_rest_comment_path(rest_comment.rest, rest_comment), method: :delete, class:"btn btn-danger btn-sm mb-2 mt-2" %>
+          <%= link_to "削除", admin_rest_rest_comment_path(rest_comment.rest, rest_comment), method: :delete, data: { confirm: '本当に消しますか？' }, class:"btn btn-danger btn-sm mb-2 mt-2" %>
         <% end %>
-        <div>
         <% end %>
       </div>
     </div>

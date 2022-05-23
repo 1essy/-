@@ -1,7 +1,5 @@
 class Public::RestsController < ApplicationController
   before_action :correct_rest, only: [:edit, :update]
-
-
   def index
     redirect_to root_path
   end
