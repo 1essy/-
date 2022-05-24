@@ -25,6 +25,19 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'
 
+gem 'geocoder'
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'devise'
+gem 'kaminari','~> 1.2.1'
+gem 'bootstrap5-kaminari-views', '~> 0.0.1'
+gem "enum_help"
+gem 'jquery-rails'
+gem 'chart-js-rails', '~> 0.1.4'
+gem 'rails-i18n'
+gem 'ransack'
+gem 'dotenv-rails'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
@@ -53,18 +66,6 @@ group :test do
   gem 'webdrivers'
 end
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem 'devise'
-gem 'kaminari','~> 1.2.1'
-gem 'bootstrap5-kaminari-views', '~> 0.0.1'
-gem "enum_help"
-gem 'jquery-rails'
-gem 'chart-js-rails', '~> 0.1.4'
-gem 'rails-i18n'
-gem 'geocoder'
-gem 'ransack'
-gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
 end
