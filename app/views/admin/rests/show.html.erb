@@ -22,7 +22,7 @@
           <div class="card-body">
             <div class=" d-inline mr-5">
               💗<%= @rest.favorites.count %>
-              閲覧数：<%= @rest.view_counts.count %>　
+              閲覧数：<%= @rest.view_counts.count %>
               タグ：<%= link_to @rest.category, admin_search_rest_path(keyword: @rest.category) %>
               <div>投稿日：<%= @rest.created_at.strftime('%Y/%m/%d') %></div>
             </div>
