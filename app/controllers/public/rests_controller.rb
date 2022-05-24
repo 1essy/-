@@ -59,8 +59,8 @@ class Public::RestsController < ApplicationController
       end
   end
   def search_params
-+    params.require(:q).permit(:address_cont)
-end
+    params.require(:q).permit(:address_cont)
+  end
 
   def correct_rest
     @rest = Rest.find(params[:id])

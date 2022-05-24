@@ -1,9 +1,9 @@
 class Public::SearchesController < ApplicationController
 
   def search
-    @search = Rest.ransack(params[:q])
+    @query = { address_or_category_or_customer_name_cont: params[:q], move_method_eq: params[:move_method_eq], smoking_area_eq: params[:smoking_area_eq], toilet_eq: params[:toilet_eq] }
+    @search = Rest.ransack(@query)
     @rests = @search.result.page(params[:page]).per(12)
-    
   end
 end
 
