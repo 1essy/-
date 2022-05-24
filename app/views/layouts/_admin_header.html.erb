@@ -31,7 +31,7 @@
     </ul>
     <div class="form-group my-2 my-lg-0 form-inline">
       <%= form_with url: admin_search_path, method: :get do |f| %>
-      <%= f.search_field :q, class:"form-control mr-sm-2" %>
+      <%= f.search_field :q, required: true, class:"form-control mr-sm-2" %>
     </div>
     <div class="actions"><%= f.submit "search", class:"btn btn-outline-success" %></div>
       <% end %>
