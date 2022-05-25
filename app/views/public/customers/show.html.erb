@@ -4,6 +4,15 @@
   </h3>
 <% if @customer == current_customer && @customer.name != "ゲスト" %>
   <h5 class="text-center"><%= link_to "ユーザー情報を編集する", edit_customer_path(current_customer), class:"btn btn-primary" %></h5>
+  
+  <div class="text-center">
+  <%= link_to customer_followings_path(@customer) do %>
+    フォロー<%= @customer.followings.count %>
+  <% end %>：
+  <%= link_to customer_followers_path(@customer) do %>
+    フォロワー<%= @customer.followers.count %>
+  <% end %>
+  </div>
   <% else %>
   <div class="text-center">
   <% if customer_signed_in? %>

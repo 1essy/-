@@ -1,10 +1,16 @@
 <h3 class="text-center mt-2">
-  <% if @customer.profile_image.attached? %>
-    <%= image_tag @customer.profile_image, style: "obfect-fit: contain; height: 40px;  width: 40px;", class: 'img-fluid rounded-circle' %>
-  <% else %>
-    <%= image_tag 'no_image.jpg', style: "obfect-fit: contain; height: 40px;  width: 40px;", class: 'img-fluid rounded-circle' %>
-  <% end %>
+    <%= image_tag @customer.get_profile_image, style: "obfect-fit: contain; height: 50px;  width: 50px;", class: 'img-fluid rounded-circle' %>
   <%= @customer.name %>さんのお気に入り一覧
 </h3>
+  <% if @customer.name != "ゲスト" %>
 <h5 class="text-center"><%= link_to "ユーザー情報を編集する", edit_customer_path(current_customer), class:"btn btn-primary" %></h5>
+  <% end %>
+<div class="text-center">
+  <%= link_to customer_followings_path(@customer) do %>
+    フォロー<%= @customer.followings.count %>
+  <% end %>：
+  <%= link_to customer_followers_path(@customer) do %>
+    フォロワー<%= @customer.followers.count %>
+  <% end %>
+</div>
 <%= render "public/customers/show", rests: @rests %>
