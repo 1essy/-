@@ -8,6 +8,7 @@
 
   <% case notice.action when 'follow' then %>
       あなたをフォローしました
+      
   <% when 'favorite' then %>
     <%= link_to 'あなたの投稿', notice.rest, style: "font-weight: bold;" %>
     をお気に入りに追加しました

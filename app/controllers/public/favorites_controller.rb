@@ -1,5 +1,6 @@
 class Public::FavoritesController < ApplicationController
   before_action :authenticate_customer!
+  
   def index
     @customer = current_customer
     @rests = @customer.favorites_rests.page(params[:page]).per(12)

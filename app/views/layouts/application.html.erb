@@ -9,8 +9,8 @@
 
     <%= stylesheet_pack_tag "application", media: "all" %>
     <%= javascript_pack_tag "application" %>
-
   </head>
+  
   <body>
     <header>
       <% if request.fullpath.include? "admin"  %>
@@ -19,12 +19,15 @@
         <%= render "layouts/customers_header" %>
       <% end %>
     </header>
+    
     <main>
       <div class="alert-success text-center"><%= notice %></div>
       <div class="alert-danger text-center"><%= alert %></div>
     <%= yield %>
     </main>
+    
     <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
+    
     <footer class="footer text-white bg-dark fixed-bottom">
       <div class="container text-center mt-3">
         © 2022 ぐ～たライフ

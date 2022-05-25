@@ -3,6 +3,7 @@
   <%= @customer.name %>さんの投稿一覧
 </h3>
 <h5 class="text-center"><%= link_to "ユーザー情報を編集する",  edit_admin_customer_path(@customer), class:"btn btn-primary" %></h5>
+
 <div class="container mt-5 ">
   <div class="row">
     <% @rests.each do |rest| %>
@@ -29,6 +30,7 @@
     <% end %>
   </div>
 </div>
+
 <div class="container">
    <div class="row">
      <div class="col-md-4 offset-md-4 py-2 mt-5">

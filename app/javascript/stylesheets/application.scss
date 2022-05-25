@@ -1,12 +1,13 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
-
+*
 
 
 .wrapper{
     min-height: 100vh;
     position: relative;/*←相対位置*/
+    
 }
 footer{
     width: 100%;

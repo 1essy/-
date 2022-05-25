@@ -6,8 +6,6 @@ class Rest < ApplicationRecord
   has_many :view_counts, dependent: :destroy
   has_many :notices, dependent: :destroy
 
-
-
   has_one_attached :image
 
   #バリデーション
@@ -30,7 +28,6 @@ class Rest < ApplicationRecord
       "no_image.jpg"
     end
   end
-
 
 
   enum move_method: { on_foot: 0, motorcycle: 1, car: 2, large_car: 3 }

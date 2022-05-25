@@ -1,4 +1,5 @@
 class Public::RestCommentsController < ApplicationController
+  
   def create
     @rest = Rest.find(params[:rest_id])
     @rest_comment = current_customer.rest_comments.new(rest_comment_params)

@@ -1,4 +1,5 @@
 class Public::NoticesController < ApplicationController
+  
   def index
     @notices = current_customer.passive_notices.page(params[:page]).per(10)
     @notices.where(checked: false).each do |notice|

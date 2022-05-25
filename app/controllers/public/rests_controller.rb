@@ -1,5 +1,6 @@
 class Public::RestsController < ApplicationController
   before_action :correct_rest, only: [:edit, :update]
+  
   def index
     redirect_to root_path
   end
@@ -52,12 +53,14 @@ class Public::RestsController < ApplicationController
   def rest_params
     params.require(:rest).permit(:describe, :move_method, :smoking_area, :toilet, :image, :address, :category).merge(customer_id: current_customer.id)
   end
+  
   def ensure_correct_customer
       @rest = Rest.find(params[:id])
       unless @rest.customer == current_customer
         redirect_to root_path
       end
   end
+  
   def search_params
     params.require(:q).permit(:address_cont)
   end
@@ -68,6 +71,4 @@ class Public::RestsController < ApplicationController
       redirect_to customer_path(current_customer)
     end
   end
-
-
 end
