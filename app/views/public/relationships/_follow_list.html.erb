@@ -15,7 +15,7 @@
         <% if customer.profile_image.attached? %>
           <%= image_tag customer.profile_image, style: "obfect-fit: contain; height: 40px;  width: 40px;", class: 'img-fluid rounded-circle' %>
         <% else %>
-          <%= image_tag 'no_image.jpg', style: "obfect-fit: contain; height: 40px;  width: 40px;", class: 'img-fluid rounded-circle' %>
+          <%= image_tag 'no_image_user.jpg', style: "obfect-fit: contain; height: 40px;  width: 40px;", class: 'img-fluid rounded-circle' %>
         <% end %>
           <%= customer.name %>
         <% end %>

@@ -20,10 +20,13 @@
               <div class="d-inline" id="favorite_buttons_<%= rest.id %>" >
               <% if customer_signed_in? %>
                 <%= render "public/favorites/favorites", rest: rest %>
-              <% end %>
               </div>
-                <div class="mr-1 d-inline"><%= rest.rest_comments.count %>コメント</div>
-                <%= link_to "詳細", rest_path(rest), class:"btn btn-sm btn-primary ml-2" %>
+              <div class="mr-1 ml-4 d-inline"><%= rest.rest_comments.count %>コメント</div>
+              <%= link_to "詳細", rest_path(rest), class:"btn btn-sm btn-primary ml-2" %>
+              <% else %>
+              <div class="mr-1 d-inline"><%= rest.rest_comments.count %>コメント</div>
+              <%= link_to "詳細", rest_path(rest), class:"btn btn-sm btn-primary ml-2" %>
+              <% end %>
             </li>
           </ul>
         </div>

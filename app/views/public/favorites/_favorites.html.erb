@@ -1,9 +1,9 @@
 <% if rest.favorited_by?(current_customer) %>
-  <%= link_to rest_favorites_path(rest), method: :delete, class:"ml-2 mr-4", remote: true do %>
+  <%= link_to rest_favorites_path(rest), method: :delete, class:"ml-2", remote: true do %>
     💗<%= rest.favorites.count %>
   <% end %>
 <% else %>
-  <%= link_to rest_favorites_path(rest), method: :post, class:"ml-2 text-dark mr-4", remote: true do %>
+  <%= link_to rest_favorites_path(rest), method: :post, class:"ml-2 text-dark", remote: true do %>
      ♡<%= rest.favorites.count %>
   <% end %>
 <% end %>

@@ -9,7 +9,7 @@
     </div>
     </div>
     <div class="col-lg-6 col-md-6-col-12">
-      
+
       <div class="card mx-auto" style="width: 31rem;">
           <%= image_tag @rest.get_rest_image, style: "obfect-fit: contain; height: 300px;  width: 500px;", class: 'img-fluid mx-auto' %>
           <div class="card-body">
@@ -24,16 +24,14 @@
             <li class="list-group-item">トイレ有無：<%= @rest.toilet_i18n %></li>
           </ul>
           <div class="card-body">
+            <div class="d-inline">投稿日：<%= @rest.created_at.strftime('%Y/%m/%d') %></div>
             <div id="favorite_buttons_<%= @rest.id %>" class="d-inline" >
               <% if customer_signed_in? %>
                 <%= render "public/favorites/favorites", rest: @rest %>
               <% end %>
             </div>
-            <div class="d-inline">
-              閲覧数：<%= @rest.view_counts.count %>　
-              タグ：<%= link_to @rest.category, search_rest_path(keyword: @rest.category) %>
-            </div>
-            <div>投稿日：<%= @rest.created_at.strftime('%Y/%m/%d') %></div>
+              <div class="d-inline ml-3 mr-2">閲覧数：<%= @rest.view_counts.count %></div>
+              <div class="d-inline">タグ：<%= link_to @rest.category, search_rest_path(keyword: @rest.category) %></div>
             <div>
               <% if @rest.customer == current_customer %>
                 <%= link_to "編集する", edit_rest_path(@rest), class:"btn btn-primary mt-1" %>
@@ -53,11 +51,11 @@
                   score: <%= @rest.rest_comments.average(:star).to_f.round(1) %>,
                 });
                 </script>
-                <span>(<%= @rest.rest_comments.count %>件)</span>　
+                <span>(<%= @rest.rest_comments.count %>件)</span>
             </div>
           </div>
       </div>
-      
+
       <% if customer_signed_in? %>
       <div class="mt-3 mx-auto" style="width: 31rem;">
           <%= form_with model: [@rest, @rest_comment] do |f| %>
@@ -82,7 +80,7 @@
           </div>
           <% end %>
       <% end %>
-      
+
           <% if @rest.rest_comments.present? %>
           <div class="mt-3 mx-auto" style="width: 31rem;">
           <div>コメント一覧</div>

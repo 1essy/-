@@ -9,7 +9,7 @@ class Rest < ApplicationRecord
   has_one_attached :image
 
   #バリデーション
-  validates :describe, presence: true,length:{ minimum: 5, maximum: 100}
+  validates :describe, presence: true,length:{ minimum: 5, maximum: 84}
   validates :address, presence: true,length:{ maximum: 30}
   validates :category, presence: true,length:{ maximum: 7}
 

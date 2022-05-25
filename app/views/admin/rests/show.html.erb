@@ -20,11 +20,11 @@
             <li class="list-group-item">トイレ有無：<%= @rest.toilet_i18n %></li>
           </ul>
           <div class="card-body">
-            <div class=" d-inline mr-5">
+            <div class=" d-inline">
+              <div class=" d-inline">投稿日：<%= @rest.created_at.strftime('%Y/%m/%d') %></div>
               💗<%= @rest.favorites.count %>
-              閲覧数：<%= @rest.view_counts.count %>
-              タグ：<%= link_to @rest.category, admin_search_rest_path(keyword: @rest.category) %>
-              <div>投稿日：<%= @rest.created_at.strftime('%Y/%m/%d') %></div>
+              <div class="d-inline mr-2 ml-3">閲覧数：<%= @rest.view_counts.count %></div>
+              <div class="d-inline">タグ：<%= link_to @rest.category, admin_search_rest_path(keyword: @rest.category) %></div>
             </div>
             <div>
               <%= link_to "投稿一覧へ戻る", admin_rests_path, class:"btn btn-info mt-1" %>
@@ -66,8 +66,9 @@
         <%= rest_comment.comment %><br>
           <%= link_to "削除", admin_rest_rest_comment_path(rest_comment.rest, rest_comment), method: :delete, data: { confirm: '本当に消しますか？' }, class:"btn btn-danger btn-sm mb-2 mt-2" %>
         <% end %>
-        <% end %>
+
       </div>
+      <% end %>
     </div>
   </div>
 </div>
