@@ -79,7 +79,7 @@ rest4 = Rest.create!(
    move_method: 0,
    smoking_area: 0,
    toilet: 2,
-   address: "〒516-0221 三重県度会郡南伊勢町〒",
+   address: "〒516-0221 三重県度会郡南伊勢町",
    category: "海",
  )
 rest4.image.attach(io: File.open(Rails.root.join('app/assets/images/4.jpg')), filename: 'default.jpg')
