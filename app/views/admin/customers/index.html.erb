@@ -5,45 +5,45 @@
 
   <div class="row mt-3">
     <div class="offset-sm-1 col-sm-10">
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th>会員ID</th>
-          <th>氏名</th>
-          <th>メールアドレス</th>
-          <th>ステータス</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @customers.each do |customer| %>
-        <tr>
-          <td><%= customer.id %></td>
-          <td>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>会員ID</th>
+            <th>氏名</th>
+            <th>メールアドレス</th>
+            <th>ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @customers.each do |customer| %>
+          <tr>
+            <td><%= customer.id %></td>
+            <td>
             <%= link_to admin_customer_path(customer) do %>
               <%= image_tag customer.get_profile_image, style: "obfect-fit: contain; height: 30px;  width: 30px;", class: 'img-fluid rounded-circle' %>
               <%= customer.name %>
             <% end %>
             </td>
-          <td><%= customer.email %></td>
-          <td>
+            <td><%= customer.email %></td>
+            <td>
             <% if customer.is_deleted == true %>
-            有効ユーザー
+              有効ユーザー
             <% else %>
               アカウント停止ユーザー
             <% end %>
-          </td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
- </div>
- </div>
- 
+</div>
+
  <div class="container">
    <div class="row">
    <div class="col-md-4 offset-md-4 py-2 mt-5">
-   <%= paginate @customers, theme: 'bootstrap-5' %>　
+   <%= paginate @customers, theme: 'bootstrap-5' %>
    </div>
    </div>
- </div> 
+ </div>

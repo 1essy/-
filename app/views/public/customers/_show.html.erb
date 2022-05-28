@@ -10,7 +10,7 @@
             <li class="list-group-item">住所：<%= rest.address.truncate(18, omission: "...") %></li>
             <li class="list-group-item">
               投稿者名：<%= link_to customer_path(rest.customer) do %>
-              <%= rest.customer.name %>
+                <%= rest.customer.name %>
               <% end %>
             </li>
             <li class="list-group-item">移動方法：<%= rest.move_method_i18n %></li>
@@ -41,4 +41,4 @@
        <%= paginate rests, theme: 'bootstrap-5' %>
      </div>
    </div>
- </div>
+</div>

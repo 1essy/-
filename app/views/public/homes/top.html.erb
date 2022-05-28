@@ -10,7 +10,7 @@
       <input id="address" type="textbox" value="" class="" placeholder="地図で住所を確認しよう">
       <input type="button" value="検索" onclick="codeAddress()" class="btn btn-secondary">
       <div id='map' class="map mt-3"></div>
-
+      <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
       <script>
         let map
         const display = document.getElementById('display')
@@ -48,7 +48,6 @@
         }
       </script>
     </div>
-
     </div>
     <div class="col-lg-3 mt-4">
       <div class="row mt-3 flex-column align-items-center pull-left">
@@ -119,10 +118,10 @@
         <div class="row">
           <%= link_to '管理者ログイン画面', new_admin_session_path, class: "btn btn-danger btn-sm btn-block mt-3 sign_up" %>
         </div>
-
+        
+        <!--ランダム写真-->
         <div class="row mt-4">
         <h4　class="text-center">こんな休憩場所があります</h4>
-        
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
           <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -131,7 +130,6 @@
           </ol>
           <div class="carousel-inner">
             <% @random_rests.each_with_index do |rest, i| %>
-            
             <div class="carousel-item <%= "active"if i.zero? %>">
               <%= rest.address %>
               <%= link_to rest_path(rest) do %>
@@ -148,6 +146,7 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
           </a>
+        </div>
         </div>
       </div>
     </div>
