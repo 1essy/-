@@ -12,6 +12,7 @@ module GuTara
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
+    config.paths.add 'lib', eager_load: true
 
     # Configuration for the application, engines, and railties goes here.
     #
@@ -24,5 +25,7 @@ module GuTara
     config.i18n.load_path += Dir[Rails.root.join('config/locales/*.yml').to_s]
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.yml').to_s]
     config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag }
+    config.paths.add 'lib', eager_load: true
+    config.time_zone = 'Tokyo'
   end
 end

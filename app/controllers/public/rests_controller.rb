@@ -1,6 +1,6 @@
 class Public::RestsController < ApplicationController
   before_action :correct_rest, only: [:edit, :update]
-  
+
   def index
     redirect_to root_path
   end
@@ -36,6 +36,17 @@ class Public::RestsController < ApplicationController
     @rest = Rest.new(rest_params)
     @rest.customer_id = current_customer.id
     if  @rest.save
+      tags = Vision.get_image_data(@rest.image)
+      safe_search_annotations = tags.select {|key,_| key == "adult" || key == "violence" || key == "racy"}
+      if safe_search_annotations.values.uniq.any? {|value| value =="LIKELY" || value == "VERY_LIKELY"}
+        @rest.destroy
+        if Rails.env.development?
+          @random_rests = Rest.order("RANDOM()").limit(3)
+        else
+          @random_rests = Rest.order("RAND()").limit(3)
+        end
+        return redirect_to root_path, alert: "適切な画像を投稿してください"
+      end
       redirect_to rest_path(@rest), notice: "投稿しました"
     else
       render template: "public/homes/top"
@@ -53,14 +64,14 @@ class Public::RestsController < ApplicationController
   def rest_params
     params.require(:rest).permit(:describe, :move_method, :smoking_area, :toilet, :image, :address, :category).merge(customer_id: current_customer.id)
   end
-  
+
   def ensure_correct_customer
       @rest = Rest.find(params[:id])
       unless @rest.customer == current_customer
         redirect_to root_path
       end
   end
-  
+
   def search_params
     params.require(:q).permit(:address_cont)
   end

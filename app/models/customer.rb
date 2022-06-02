@@ -9,7 +9,6 @@ class Customer < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :favorites_rests, through: :favorites, source: :rest
   has_many :view_counts, dependent: :destroy
-
   # フォローをした、されたの関係
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
@@ -20,7 +19,9 @@ class Customer < ApplicationRecord
   
   has_many :active_notices, class_name: 'Notice', foreign_key: 'send_id', dependent: :destroy
   has_many :passive_notices, class_name: 'Notice', foreign_key: 'receive_id', dependent: :destroy
-
+  
+  #バリデーション
+  validates :name, presence: true, length: { minimum: 2, maximum: 20}
   has_one_attached :profile_image
 
   def get_profile_image
@@ -58,8 +59,7 @@ class Customer < ApplicationRecord
     end
   end
 
-  #バリデーション
-  validates :name, presence: true, length: { minimum: 2, maximum: 20}
+  
 
   def favorited_by?(customer)
     favorites.exists?(customer_id: customer.id)

@@ -37,6 +37,8 @@ gem 'chart-js-rails', '~> 0.1.4'
 gem 'rails-i18n'
 gem 'ransack'
 gem 'dotenv-rails'
+gem 'whenever', require: false
+gem 'dotenv-rails'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
