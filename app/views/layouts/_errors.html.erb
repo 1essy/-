@@ -1,10 +1,9 @@
 <% if object.errors.any? %>
 <div class="alert alert-danger" role="alert" id="error_explanation">
-  <h4 class="alert-heading text-center">エラーを修正してください</h4>
-    <ul>
-      <% object.errors.full_messages.each do |message| %>
-        <li class="list-unstyled text-center"><%= message %></li>
-      <% end %>
-    </ul>
+  <ul>
+    <% object.errors.full_messages.each do |message| %>
+      <li class="list-unstyled text-center"><%= message %></li>
+    <% end %>
+  </ul>
 </div>
 <% end %>

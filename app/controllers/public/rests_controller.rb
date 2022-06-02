@@ -40,11 +40,6 @@ class Public::RestsController < ApplicationController
       safe_search_annotations = tags.select {|key,_| key == "adult" || key == "violence" || key == "racy"}
       if safe_search_annotations.values.uniq.any? {|value| value =="LIKELY" || value == "VERY_LIKELY"}
         @rest.destroy
-        if Rails.env.development?
-          @random_rests = Rest.order("RANDOM()").limit(3)
-        else
-          @random_rests = Rest.order("RAND()").limit(3)
-        end
         return redirect_to root_path, alert: "適切な画像を投稿してください"
       end
       redirect_to rest_path(@rest), notice: "投稿しました"
