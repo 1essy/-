@@ -20,17 +20,12 @@
 # Learn more: http://github.com/javan/whenever
 
 
-#env :PATH, ENV['PATH']
-#set :output, 'log/cron.log'
-#if Rails.env.development?
-  #set :environment, :development
-#else
-  #set :environment, :production
-#end
- #every 1.minutes do
-  # every 1.days, at: '0:10 am' do
-    #runner "Batch::DataReset.data_reset"
-# end
+env :PATH, ENV['PATH']
+set :output, 'log/cron.log'
+set :environment, :production
+every 1.days, at: '0:10 am' do
+runner "Batch::DataReset.data_reset"
+end
 
  #every 1.minutes do
     #runner "Batch::DataReset.customer_data_reset"
