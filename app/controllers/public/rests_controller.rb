@@ -26,6 +26,12 @@ class Public::RestsController < ApplicationController
 
   def update
     if  @rest.update(rest_params)
+      tags = Vision.get_image_data(@rest.image)
+      safe_search_annotations = tags.select {|key,_| key == "adult" || key == "violence" || key == "racy"}
+      if safe_search_annotations.values.uniq.any? {|value| value =="LIKELY" || value == "VERY_LIKELY"}
+        @rest.get_rest_image.destroy
+        return redirect_to rest_path(@rest), alert: "適切な画像を選択してください"
+      end
       redirect_to rest_path(@rest), notice: "投稿を更新しました"
     else
       render :edit
