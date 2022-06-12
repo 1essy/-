@@ -13,7 +13,7 @@ class Public::CustomersController < ApplicationController
   def guest_sign_in
     customer = Customer.guest
     sign_in customer
-    redirect_to root_path, notice: 'ゲストでログインしました。'
+    redirect_to root_path, notice: 'ゲストでログインしました'
   end
 
   def index
@@ -54,7 +54,7 @@ class Public::CustomersController < ApplicationController
   def ensure_guest_customer
     @customer = Customer.find(params[:id])
     if @customer.name == "ゲスト"
-      redirect_to customer_path(current_customer) , alert: 'ゲストユーザーはこのページへ遷移できません。'
+      redirect_to customer_path(current_customer) , alert: 'ゲストユーザーはこのページへ遷移できません'
     end
   end
 end
