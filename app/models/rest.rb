@@ -65,7 +65,7 @@ class Rest < ApplicationRecord
     temp_ids.each do |temp_id|
       save_notice_rest_comment!(current_customer, rest_comment_id, temp_id['customer_id'])
     end
-    # まだ誰もコメントしていない場合は、投稿者に通知を送る
+    # まだ誰もコメントしていない場合は、投稿者に通知を送る 
     save_notice_rest_comment!(current_customer, rest_comment_id, customer_id) if temp_ids.blank?
   end
 
