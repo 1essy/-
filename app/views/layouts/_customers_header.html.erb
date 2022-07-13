@@ -23,7 +23,7 @@
             <% end %>
             </li>
             <li>
-              <%=  link_to notices_path,class: 'nav-link text-light' do %>
+              <%= link_to notices_path,class: 'nav-link text-light' do %>
               <% if unchecked_notices.any? %>
                 <i class="far fa-bell" style="color: tomato;"></i>通知 
               <% else %>
