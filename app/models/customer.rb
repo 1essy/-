@@ -21,7 +21,7 @@ class Customer < ApplicationRecord
   has_many :passive_notices, class_name: 'Notice', foreign_key: 'receive_id', dependent: :destroy
   
   #バリデーション
-  validates :name, presence: true, length: { minimum: 2, maximum: 20}
+  validates :name, presence: true, length: { minimum: 2, maximum: 20} 
   has_one_attached :profile_image
 
   def get_profile_image
