@@ -62,7 +62,7 @@ class Customer < ApplicationRecord
   
 
   def favorited_by?(customer)
-    favorites.exists?(customer_id: customer.id)
+    favorites.exists?(customer_id: customer.id) 
   end
   
   #ゲストユーザー作成機能
