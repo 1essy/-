@@ -72,7 +72,7 @@ class Customer < ApplicationRecord
       customer.name = "ゲスト"
     end
   end
-
+ 
   def active_for_authentication?
     super && (is_deleted == true)
   end
